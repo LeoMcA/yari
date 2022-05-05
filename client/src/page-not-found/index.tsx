@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { PageContentContainer } from "../ui/atoms/page-content";
 import "./index.scss";
 
+// @ts-ignore
 const FallbackLink = React.lazy(() => import("./fallback-link"));
 
 // NOTE! To hack on this component, you have to use a trick to even get to this

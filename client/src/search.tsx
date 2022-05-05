@@ -38,7 +38,7 @@ function useSearchIndex(): readonly [
 ] {
   const [shouldInitialize, setShouldInitialize] = useState(false);
   const [searchIndex, setSearchIndex] = useState<null | SearchIndex>(null);
-  const { locale } = useParams();
+  const { locale = "en-US" } = useParams();
 
   // Default to 'en-US' if you're on the home page without the locale prefix.
   const url = `/${locale || "en-US"}/search-index.json`;

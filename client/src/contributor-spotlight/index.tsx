@@ -23,7 +23,8 @@ type ContributorDetails = {
 };
 
 export function ContributorSpotlight(props: HydrationData<ContributorDetails>) {
-  const { "*": slug, locale } = useParams();
+  const { "*": slug, locale = "en-US" } = useParams();
+  // @ts-ignore
   const baseURL = `/${locale.toLowerCase()}/community/spotlight/${slug}`;
   const contributorJSONUrl = `${baseURL}/index.json`;
 
@@ -38,7 +39,7 @@ export function ContributorSpotlight(props: HydrationData<ContributorDetails>) {
       return await response.json();
     },
     {
-      initialData: props.hyData ? props : undefined,
+      fallbackData: props.hyData ? props : undefined,
       revalidateOnFocus: CRUD_MODE,
     }
   );

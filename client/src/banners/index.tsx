@@ -12,6 +12,7 @@ import "./banner.scss";
 
 import { PLUS_LAUNCH_ANNOUNCEMENT } from "./ids";
 
+// @ts-ignore
 const ActiveBanner = React.lazy(() => import("./active-banner"));
 
 export const hasActiveBanners = true;

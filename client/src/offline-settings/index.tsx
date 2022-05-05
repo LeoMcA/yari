@@ -7,6 +7,7 @@ import { useUserData } from "../user-context";
 
 import "./index.scss";
 
+// @ts-ignore
 const SettingsApp = React.lazy(() => import("./settings"));
 
 export function OfflineSettings() {

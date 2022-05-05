@@ -62,7 +62,11 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader?outputPath=/distimages/"],
+        // use: ["file-loader?outputPath=/distimages/"],
+        type: "asset/resource",
+        // generator: {
+        //   filename: "distimages/[hash][ext][query]"
+        // }
       },
       { test: /\.(css|scss)$/, loader: "ignore-loader" },
     ],

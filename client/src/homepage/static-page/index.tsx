@@ -52,7 +52,7 @@ function StaticPage({
       return await response.json();
     },
     {
-      initialData: isServer ? initialData : undefined,
+      fallbackData: isServer ? initialData : undefined,
       revalidateOnFocus: CRUD_MODE,
     }
   );

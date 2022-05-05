@@ -41,7 +41,9 @@ import "./interactive-examples.scss";
 // import { useUIStatus } from "../ui-context";
 
 // Lazy sub-components
+// @ts-ignore
 const Toolbar = React.lazy(() => import("./toolbar"));
+// @ts-ignore
 const MathMLPolyfillMaybe = React.lazy(() => import("./mathml-polyfill"));
 
 export function Document(props /* TODO: define a TS interface for this */) {
@@ -49,7 +51,7 @@ export function Document(props /* TODO: define a TS interface for this */) {
 
   const mountCounter = React.useRef(0);
   const documentURL = useDocumentURL();
-  const { locale } = useParams();
+  const { locale = "en-US" } = useParams();
   const [searchParams] = useSearchParams();
 
   const navigate = useNavigate();

@@ -6,7 +6,9 @@ import { PageContentContainer } from "../ui/atoms/page-content";
 import { useGA } from "../ga-context";
 import "./index.scss";
 
+// @ts-ignore
 const SiteSearchForm = React.lazy(() => import("./form"));
+// @ts-ignore
 const SearchResults = React.lazy(() => import("./search-results"));
 
 export function SiteSearch() {

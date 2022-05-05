@@ -16,7 +16,9 @@ import NoteCard from "../ui/molecules/notecards";
 
 const BrowserCompatibilityTable = lazy(
   () =>
+    // @ts-ignore
     import(
+      // @ts-ignore
       /* webpackChunkName: "browser-compatibility-table" */ "./ingredients/browser-compatibility-table"
     )
 );

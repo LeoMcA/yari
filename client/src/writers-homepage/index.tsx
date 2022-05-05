@@ -6,6 +6,7 @@ import { useLocale } from "../hooks";
 import "./index.scss";
 
 // Lazy sub-components
+// @ts-ignore
 const ViewedDocuments = React.lazy(() => import("./viewed-documents"));
 
 export default function WritersHomepage() {

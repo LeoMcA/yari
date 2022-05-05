@@ -105,7 +105,7 @@ function fillMetadata(string, doc) {
 }
 
 function NewIssueOnGitHubLink({ doc }: { doc: Doc }) {
-  const { locale } = doc;
+  const { locale = "en-US" } = doc;
   const url = new URL("https://github.com/");
   const sp = new URLSearchParams();
 

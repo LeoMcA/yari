@@ -8,8 +8,11 @@ import Notifications from "./notifications";
 import { MDN_PLUS_TITLE } from "../constants";
 import { OfflineSettings } from "../offline-settings";
 
+// @ts-ignore
 const OfferOverview = React.lazy(() => import("./offer-overview"));
+// @ts-ignore
 const Collections = React.lazy(() => import("./collections"));
+// @ts-ignore
 const PlusDocs = React.lazy(() => import("./plus-docs"));
 
 export function Plus({ pageTitle, ...props }: { pageTitle?: string }) {
