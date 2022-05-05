@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@babel/helper-builder-react-jsx": "^7.16.7",
+    "@babel/preset-env": "^7.17.10",
     "@caporal/core": "^2.0.2",
     "@fast-csv/parse": "^4.3.6",
     "@mdn/browser-compat-data": "^4.1.19",
