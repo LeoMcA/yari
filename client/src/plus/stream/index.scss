@@ -1,0 +1,75 @@
+@use "../../ui/vars" as *;
+
+.container {
+  display: grid;
+}
+
+article {
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--elem-radius);
+  box-shadow: var(--shadow-02);
+  padding: 1em;
+  margin-top: 1em;
+}
+
+.bc-head-txt-label,
+.bc-legend,
+.bc-github-link {
+  display: none;
+}
+
+p {
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.chrome-highlight .bc-browser-chrome,
+.edge-highlight .bc-browser-edge,
+.firefox-highlight .bc-browser-firefox,
+.opera-highlight .bc-browser-opera,
+.safari-highlight .bc-browser-safari,
+.chrome_android-highlight .bc-browser-chrome_android,
+.firefox_android-highlight .bc-browser-firefox_android,
+.opera_android-highlight .bc-browser-opera_android,
+.safari_ios-highlight .bc-browser-safari_ios,
+.samsunginternet_android-highlight .bc-browser-samsunginternet_android,
+.webview_android-highlight .bc-browser-webview_android {
+  background: yellow;
+}
+
+h2,
+h3 {
+  margin: 0;
+  font-size: 1rem;
+
+  &::before {
+    vertical-align: baseline;
+  }
+}
+
+.section-css {
+  border-left-color: var(--css-accent-engage);
+  border-left-width: 5px;
+
+  h2::before {
+    content: "CSS";
+  }
+}
+
+.section-api {
+  border-left-color: var(--apis-accent-engage);
+  border-left-width: 5px;
+
+  h2::before {
+    content: "Web APIs";
+  }
+}
+
+.section-webextensions {
+  border-left-color: var(--icon-primary);
+  border-left-width: 5px;
+
+  h2::before {
+    content: "Web Extensions";
+  }
+}

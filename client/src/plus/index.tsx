@@ -14,6 +14,7 @@ import { useUserData } from "../user-context";
 const OfferOverview = React.lazy(() => import("./offer-overview"));
 const Collections = React.lazy(() => import("./collections"));
 const CollectionsV2 = React.lazy(() => import("./collections/v2"));
+const Stream = React.lazy(() => import("./stream"));
 
 export function Plus({ pageTitle, ...props }: { pageTitle?: string }) {
   React.useEffect(() => {
@@ -73,6 +74,14 @@ export function Plus({ pageTitle, ...props }: { pageTitle?: string }) {
                 <Collections />
               </div>
             )}
+          </Layout>
+        }
+      />
+      <Route
+        path="stream/*"
+        element={
+          <Layout>
+            <Stream />
           </Layout>
         }
       />
