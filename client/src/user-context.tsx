@@ -55,6 +55,24 @@ export class OfflineSettingsData {
   }
 }
 
+interface WhoAmI {
+  geo?: {
+    country: string;
+  };
+  username?: string;
+  is_authenticated?: boolean;
+  email?: string;
+  avatar_url?: string;
+  is_subscriber?: boolean;
+  subscription_type?: string;
+  settings?: {
+    col_in_search?: boolean;
+    locale_override?: string;
+    multiple_collections?: boolean;
+    collections_last_modified_time?: string;
+  };
+}
+
 export type UserData = {
   username: string | null | undefined;
   isAuthenticated: boolean;
@@ -147,49 +165,54 @@ function setSessionStorageData(data: UserData) {
 }
 
 export function UserDataProvider(props: { children: React.ReactNode }) {
-  const { data, mutate } = useSWR<UserData | null, Error | null>(
-    DISABLE_AUTH ? null : "/api/v1/whoami",
-    async (url) => {
-      const response = await fetch(url);
-      if (!response.ok) {
-        removeSessionStorageData();
-        throw new Error(`${response.status} on ${response.url}`);
-      }
-      const data = await response.json();
-      const collectionLastModified =
-        data?.settings?.collections_last_modified_time;
-      const settings: UserPlusSettings | null = data?.settings
-        ? {
-            colInSearch: data?.settings?.col_in_search || false,
-            collectionLastModified:
-              (collectionLastModified && new Date(collectionLastModified)) ||
-              null,
-          }
-        : null;
+  const { data } = (({ data, mutate }) => {
+    if (!data) return { data: undefined };
+    const collectionLastModified =
+      data?.settings?.collections_last_modified_time;
+    const settings: UserPlusSettings | null = data?.settings
+      ? {
+          colInSearch: data?.settings?.col_in_search || false,
+          collectionLastModified:
+            (collectionLastModified && new Date(collectionLastModified)) ||
+            null,
+        }
+      : null;
 
-      return {
+    return {
+      data: {
         username: data.username || null,
         isAuthenticated: data.is_authenticated || false,
-        isBetaTester: data.is_beta_tester || false,
-        isStaff: data.is_staff || false,
-        isSuperuser: data.is_super_user || false,
+        isBetaTester: false,
+        isStaff: false,
+        isSuperuser: false,
         avatarUrl: data.avatar_url || null,
         isSubscriber: data.is_subscriber || false,
         subscriptionType:
           data.subscription_type === "core"
             ? SubscriptionType.MDN_CORE
             : data.subscription_type ?? null,
-        subscriberNumber: data.subscriber_number || null,
+        subscriberNumber: null,
         email: data.email || null,
         geo: {
           country: (data.geo && data.geo.country) || DEFAULT_GEO_COUNTRY,
         },
-        maintenance: data.maintenance,
         settings,
-        offlineSettings: null,
+        offlineSettings: OfflineSettingsData.read(),
         mutate,
-      };
-    }
+      },
+    } as { data: UserData };
+  })(
+    useSWR<WhoAmI | null, Error | null>(
+      DISABLE_AUTH ? null : "/api/v1/whoami",
+      async (url) => {
+        const response = await fetch(url);
+        if (!response.ok) {
+          removeSessionStorageData();
+          throw new Error(`${response.status} on ${response.url}`);
+        }
+        return (await response.json()) as WhoAmI;
+      }
+    )
   );
 
   React.useEffect(() => {
