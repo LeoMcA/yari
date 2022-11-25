@@ -1,0 +1,124 @@
+.updates {
+  > header {
+    --plus-header: var(--updates-header);
+    --plus-mandala: var(--updates-mandala);
+    --plus-icon: var(--updates-icon);
+    --plus-link: var(--updates-link);
+  }
+
+  .group {
+    background: var(--background-secondary);
+    border-radius: 4px;
+    margin: 1rem 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+      font-weight: 500;
+      line-height: 175%;
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        background: var(--text-secondary);
+      }
+
+      .number-badge {
+        color: #004d92;
+        background: #dce2f2;
+        border-radius: 4px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        padding: 4px 8px;
+        line-height: 120%;
+      }
+
+      time {
+        margin-left: auto;
+        color: var(--text-secondary);
+        font-size: 11px;
+      }
+    }
+  }
+
+  details {
+    background: var(--background-primary);
+    border-radius: 4px;
+    box-shadow: inset 4px 0 0 var(--category-color-engage);
+
+    &[open] {
+      summary .icon-chevron {
+        transform: rotate(180deg);
+      }
+    }
+
+    summary {
+      padding: 0.5rem 1rem;
+      align-items: center;
+      display: flex;
+      list-style-type: none;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: -0.5px;
+      line-height: 175%;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+
+      code {
+        font-size: 14px;
+        line-height: 150%;
+        color: var(--text-primary);
+        margin-right: 8px;
+        border-radius: 4px;
+        padding: 4px 4px 2px;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      i {
+        font-size: 11px;
+        margin-right: 1rem;
+      }
+
+      .icon-chevron {
+        margin-left: auto;
+      }
+    }
+
+    > div {
+      padding: 0.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      > nav {
+        display: flex;
+        gap: 8px;
+        --button-action-transform: none;
+        --article-actions-position-left: 0;
+
+        > div {
+          position: relative;
+        }
+      }
+
+      .bc-github-link,
+      .bc-legend {
+        display: none;
+      }
+
+      .bc-table {
+        margin: 0;
+      }
+    }
+  }
+}

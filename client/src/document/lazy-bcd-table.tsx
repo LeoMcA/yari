@@ -57,7 +57,11 @@ export function LazyBrowserCompatibilityTable({
   );
 }
 
-function LazyBrowserCompatibilityTableInner({ dataURL }: { dataURL: string }) {
+export function LazyBrowserCompatibilityTableInner({
+  dataURL,
+}: {
+  dataURL: string;
+}) {
   const locale = useLocale();
   const [bcdDataURL, setBCDDataURL] = useState("");
   const isServer = useIsServer();

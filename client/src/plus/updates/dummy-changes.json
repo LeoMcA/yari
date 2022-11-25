@@ -1,0 +1,2908 @@
+[
+  {
+    "event": "added_stable",
+    "path": "api.PerformanceResourceTiming.renderBlockingStatus",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "107",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "107",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "107",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/renderBlockingStatus",
+    "spec_url": [
+      "https://w3c.github.io/resource-timing/#dom-performanceresourcetiming-renderblockingstatus"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.properties.grid-template-columns.animation",
+    "description": "Animation of tracks",
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "107",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "107",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "107",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": null,
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.properties.grid-template-rows.animation",
+    "description": "Animation of tracks",
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "107",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "107",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "107",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": null,
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_preview",
+    "path": "css.properties.grid-template-columns.animation",
+    "description": "Animation of tracks",
+    "browsers": [
+      {
+        "browser": "opera",
+        "version": "93",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": null,
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_preview",
+    "path": "css.properties.grid-template-rows.animation",
+    "description": "Animation of tracks",
+    "browsers": [
+      {
+        "browser": "opera",
+        "version": "93",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": null,
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.FileSystemFileHandle",
+    "subfeatures": ["api.FileSystemFileHandle.createSyncAccessHandle"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.PerformanceResourceTiming",
+    "subfeatures": ["api.PerformanceResourceTiming.renderBlockingStatus"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "css.properties.animation-timeline",
+    "subfeatures": ["css.properties.animation-timeline.scroll"]
+  },
+  {
+    "event": "added_stable",
+    "path": "api.AudioDecoder.dequeue_event",
+    "description": "<code>dequeue</code> event",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": [
+      "https://w3c.github.io/webcodecs/#eventdef-audiodecoder-dequeue"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.AudioEncoder.dequeue_event",
+    "description": "<code>dequeue</code> event",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": [
+      "https://w3c.github.io/webcodecs/#eventdef-audioencoder-dequeue"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.CSSContainerRule",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/CSSContainerRule",
+    "spec_url": [
+      "https://w3c.github.io/csswg-drafts/css-contain-3/#the-csscontainerrule-interface"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Crypto",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "nodejs",
+        "version": "19.0.0",
+        "notes": [
+          "<code>Crypto</code> is not a concrete interface, but its methods are available on the global <code>crypto</code> object."
+        ]
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Crypto",
+    "spec_url": ["https://w3c.github.io/webcrypto/#crypto-interface"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Crypto.randomUUID",
+    "description": "<code>randomUUID()</code>",
+    "browsers": [
+      {
+        "browser": "nodejs",
+        "version": "19.0.0",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Crypto/randomUUID",
+    "spec_url": ["https://w3c.github.io/webcrypto/#Crypto-method-randomUUID"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.CustomEvent",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "nodejs",
+        "version": "19.0.0",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/CustomEvent",
+    "spec_url": ["https://dom.spec.whatwg.org/#interface-customevent"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Document.exitPictureInPicture",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Document/exitPictureInPicture",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-document-exitpictureinpicture"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Document.pictureInPictureElement",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Document/pictureInPictureElement",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-documentorshadowroot-pictureinpictureelement①⑤"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Document.pictureInPictureEnabled",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Document/pictureInPictureEnabled",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-document-pictureinpictureenabled"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Element.setHTML",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Element/setHTML",
+    "spec_url": ["https://wicg.github.io/sanitizer-api/#dom-element-sethtml"],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.HTMLVideoElement.disablePictureInPicture",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/disablePictureInPicture",
+    "spec_url": ["https://w3c.github.io/picture-in-picture/#disable-pip"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.HTMLVideoElement.enterpictureinpicture_event",
+    "description": "<code>enterpictureinpicture</code> event",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/enterpictureinpicture_event",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#eventdef-htmlvideoelement-enterpictureinpicture",
+      "https://w3c.github.io/picture-in-picture/#dom-htmlvideoelement-onenterpictureinpicture"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.HTMLVideoElement.leavepictureinpicture_event",
+    "description": "<code>leavepictureinpicture</code> event",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/leavepictureinpicture_event",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#eventdef-htmlvideoelement-leavepictureinpicture",
+      "https://w3c.github.io/picture-in-picture/#dom-htmlvideoelement-onleavepictureinpicture"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.HTMLVideoElement.requestPictureInPicture",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/requestPictureInPicture",
+    "spec_url": ["https://w3c.github.io/picture-in-picture/#request-pip"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.NavigateEvent.intercept",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": [
+      "https://wicg.github.io/navigation-api/#dom-navigateevent-intercept"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.NavigateEvent.scroll",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": [
+      "https://wicg.github.io/navigation-api/#dom-navigateevent-scroll"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureEvent",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureEvent",
+    "spec_url": ["https://w3c.github.io/picture-in-picture/#event-types"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureEvent.PictureInPictureEvent",
+    "description": "<code>PictureInPictureEvent()</code> constructor",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureEvent/PictureInPictureEvent",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#dom-pictureinpictureevent-pictureinpictureevent"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureEvent.pictureInPictureWindow",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureEvent/pictureInPictureWindow",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#dom-pictureinpictureevent-pictureinpicturewindow"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureWindow",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#interface-picture-in-picture-window"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureWindow.height",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/height",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-pictureinpicturewindow-height"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureWindow.resize_event",
+    "description": "<code>resize</code> event",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/resize_event",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#eventdef-pictureinpicturewindow-resize",
+      "https://w3c.github.io/picture-in-picture/#dom-pictureinpicturewindow-onresize"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureWindow.width",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/width",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-pictureinpicturewindow-width"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Request.body",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Request/body",
+    "spec_url": ["https://fetch.spec.whatwg.org/#ref-for-dom-body-body①"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Sanitizer",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Sanitizer",
+    "spec_url": ["https://wicg.github.io/sanitizer-api/#sanitizer-api"],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Sanitizer.Sanitizer",
+    "description": "<code>Sanitizer()</code> constructor",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Sanitizer/Sanitizer",
+    "spec_url": [
+      "https://wicg.github.io/sanitizer-api/#dom-sanitizer-sanitizer"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Sanitizer.getConfiguration",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Sanitizer/getConfiguration",
+    "spec_url": [
+      "https://wicg.github.io/sanitizer-api/#dom-sanitizer-getconfiguration"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.ShadowRoot.pictureInPictureElement",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/ShadowRoot/pictureInPictureElement",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-documentorshadowroot-pictureinpictureelement①⑤"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.VideoDecoder.dequeue_event",
+    "description": "<code>dequeue</code> event",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": [
+      "https://w3c.github.io/webcodecs/#eventdef-videodecoder-dequeue"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.VideoEncoder.dequeue_event",
+    "description": "<code>dequeue</code> event",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": [
+      "https://w3c.github.io/webcodecs/#eventdef-videencoder-dequeue"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.at-rules.container",
+    "description": "<code>@container</code>",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@container",
+    "spec_url": [
+      "https://w3c.github.io/csswg-drafts/css-contain-3/#container-rule"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.properties.contain.inline-size",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/contain#inline-size",
+    "spec_url": [
+      "https://w3c.github.io/csswg-drafts/css-contain-3/#valdef-contain-inline-size"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.properties.container",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/container",
+    "spec_url": [
+      "https://w3c.github.io/csswg-drafts/css-contain-3/#container-shorthand"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.properties.container-name",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/container-name",
+    "spec_url": [
+      "https://w3c.github.io/csswg-drafts/css-contain-3/#container-name"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.properties.container-type",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/container-type",
+    "spec_url": [
+      "https://w3c.github.io/csswg-drafts/css-contain-3/#container-type"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.properties.hyphenate-character",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/hyphenate-character",
+    "spec_url": [
+      "https://w3c.github.io/csswg-drafts/css-text-4/#propdef-hyphenate-character"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.selectors.has",
+    "description": "<code>:has()</code>",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:has",
+    "spec_url": ["https://w3c.github.io/csswg-drafts/selectors/#relational"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.selectors.modal",
+    "description": "<code>:modal</code>",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:modal",
+    "spec_url": ["https://w3c.github.io/csswg-drafts/selectors/#modal-state"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.types.length.ic",
+    "description": "<code>ic</code> unit",
+    "browsers": [
+      {
+        "browser": "opera_android",
+        "version": "72",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": null,
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "removed_stable",
+    "path": "api.Crypto",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "nodejs",
+        "version": "19.0.0",
+        "notes": [
+          "<code>Crypto</code> is not a concrete interface, but calling <code>require('crypto').webcrypto</code> returns an instance of the <code>Crypto</code> class."
+        ]
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Crypto",
+    "spec_url": ["https://w3c.github.io/webcrypto/#crypto-interface"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "removed_stable",
+    "path": "api.Crypto.randomUUID",
+    "description": "<code>randomUUID()</code>",
+    "browsers": [
+      {
+        "browser": "nodejs",
+        "version": "19.0.0",
+        "notes": [
+          "From version 14.17.0, a similar method is available as <a href='https://nodejs.org/docs/latest-v14.x/api/crypto.html#crypto_crypto'><code>crypto.randomUUID()</code></a>."
+        ]
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Crypto/randomUUID",
+    "spec_url": ["https://w3c.github.io/webcrypto/#Crypto-method-randomUUID"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_nonnull",
+    "path": "html.elements.col.bgcolor",
+    "support_changes": [
+      {
+        "browser": "chrome",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "chrome_android",
+        "support": [
+          {
+            "version_added": "18"
+          }
+        ]
+      },
+      {
+        "browser": "edge",
+        "support": [
+          {
+            "version_added": "12"
+          }
+        ]
+      },
+      {
+        "browser": "oculus",
+        "support": [
+          {
+            "version_added": "5.0"
+          }
+        ]
+      },
+      {
+        "browser": "opera",
+        "support": [
+          {
+            "version_added": "≤15"
+          }
+        ]
+      },
+      {
+        "browser": "opera_android",
+        "support": [
+          {
+            "version_added": "≤14"
+          }
+        ]
+      },
+      {
+        "browser": "safari",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "safari_ios",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "samsunginternet_android",
+        "support": [
+          {
+            "version_added": "1.0"
+          }
+        ]
+      },
+      {
+        "browser": "webview_android",
+        "support": [
+          {
+            "version_added": "4.4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "event": "added_nonnull",
+    "path": "html.elements.colgroup.bgcolor",
+    "support_changes": [
+      {
+        "browser": "chrome",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "chrome_android",
+        "support": [
+          {
+            "version_added": "18"
+          }
+        ]
+      },
+      {
+        "browser": "edge",
+        "support": [
+          {
+            "version_added": "12"
+          }
+        ]
+      },
+      {
+        "browser": "oculus",
+        "support": [
+          {
+            "version_added": "5.0"
+          }
+        ]
+      },
+      {
+        "browser": "opera",
+        "support": [
+          {
+            "version_added": "≤15"
+          }
+        ]
+      },
+      {
+        "browser": "opera_android",
+        "support": [
+          {
+            "version_added": "≤14"
+          }
+        ]
+      },
+      {
+        "browser": "safari",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "safari_ios",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "samsunginternet_android",
+        "support": [
+          {
+            "version_added": "1.0"
+          }
+        ]
+      },
+      {
+        "browser": "webview_android",
+        "support": [
+          {
+            "version_added": "4.4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "event": "added_nonnull",
+    "path": "html.elements.tbody.bgcolor",
+    "support_changes": [
+      {
+        "browser": "chrome",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "chrome_android",
+        "support": [
+          {
+            "version_added": "18"
+          }
+        ]
+      },
+      {
+        "browser": "edge",
+        "support": [
+          {
+            "version_added": "12"
+          }
+        ]
+      },
+      {
+        "browser": "oculus",
+        "support": [
+          {
+            "version_added": "5.0"
+          }
+        ]
+      },
+      {
+        "browser": "opera",
+        "support": [
+          {
+            "version_added": "≤15"
+          }
+        ]
+      },
+      {
+        "browser": "opera_android",
+        "support": [
+          {
+            "version_added": "≤14"
+          }
+        ]
+      },
+      {
+        "browser": "safari",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "safari_ios",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "samsunginternet_android",
+        "support": [
+          {
+            "version_added": "1.0"
+          }
+        ]
+      },
+      {
+        "browser": "webview_android",
+        "support": [
+          {
+            "version_added": "4.4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "event": "added_nonnull",
+    "path": "html.elements.td.bgcolor",
+    "support_changes": [
+      {
+        "browser": "chrome",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "chrome_android",
+        "support": [
+          {
+            "version_added": "18"
+          }
+        ]
+      },
+      {
+        "browser": "edge",
+        "support": [
+          {
+            "version_added": "12"
+          }
+        ]
+      },
+      {
+        "browser": "oculus",
+        "support": [
+          {
+            "version_added": "5.0"
+          }
+        ]
+      },
+      {
+        "browser": "opera",
+        "support": [
+          {
+            "version_added": "≤15"
+          }
+        ]
+      },
+      {
+        "browser": "opera_android",
+        "support": [
+          {
+            "version_added": "≤14"
+          }
+        ]
+      },
+      {
+        "browser": "safari",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "safari_ios",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "samsunginternet_android",
+        "support": [
+          {
+            "version_added": "1.0"
+          }
+        ]
+      },
+      {
+        "browser": "webview_android",
+        "support": [
+          {
+            "version_added": "4.4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "event": "added_nonnull",
+    "path": "html.elements.tfoot.bgcolor",
+    "support_changes": [
+      {
+        "browser": "chrome",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "chrome_android",
+        "support": [
+          {
+            "version_added": "18"
+          }
+        ]
+      },
+      {
+        "browser": "edge",
+        "support": [
+          {
+            "version_added": "12"
+          }
+        ]
+      },
+      {
+        "browser": "oculus",
+        "support": [
+          {
+            "version_added": "5.0"
+          }
+        ]
+      },
+      {
+        "browser": "opera",
+        "support": [
+          {
+            "version_added": "≤15"
+          }
+        ]
+      },
+      {
+        "browser": "opera_android",
+        "support": [
+          {
+            "version_added": "≤14"
+          }
+        ]
+      },
+      {
+        "browser": "safari",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "safari_ios",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "samsunginternet_android",
+        "support": [
+          {
+            "version_added": "1.0"
+          }
+        ]
+      },
+      {
+        "browser": "webview_android",
+        "support": [
+          {
+            "version_added": "4.4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "event": "added_nonnull",
+    "path": "html.elements.th.bgcolor",
+    "support_changes": [
+      {
+        "browser": "chrome",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "chrome_android",
+        "support": [
+          {
+            "version_added": "18"
+          }
+        ]
+      },
+      {
+        "browser": "edge",
+        "support": [
+          {
+            "version_added": "12"
+          }
+        ]
+      },
+      {
+        "browser": "oculus",
+        "support": [
+          {
+            "version_added": "5.0"
+          }
+        ]
+      },
+      {
+        "browser": "opera",
+        "support": [
+          {
+            "version_added": "≤15"
+          }
+        ]
+      },
+      {
+        "browser": "opera_android",
+        "support": [
+          {
+            "version_added": "≤14"
+          }
+        ]
+      },
+      {
+        "browser": "safari",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "safari_ios",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "samsunginternet_android",
+        "support": [
+          {
+            "version_added": "1.0"
+          }
+        ]
+      },
+      {
+        "browser": "webview_android",
+        "support": [
+          {
+            "version_added": "4.4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "event": "added_nonnull",
+    "path": "html.elements.thead.bgcolor",
+    "support_changes": [
+      {
+        "browser": "chrome",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "chrome_android",
+        "support": [
+          {
+            "version_added": "18"
+          }
+        ]
+      },
+      {
+        "browser": "edge",
+        "support": [
+          {
+            "version_added": "12"
+          }
+        ]
+      },
+      {
+        "browser": "oculus",
+        "support": [
+          {
+            "version_added": "5.0"
+          }
+        ]
+      },
+      {
+        "browser": "opera",
+        "support": [
+          {
+            "version_added": "≤15"
+          }
+        ]
+      },
+      {
+        "browser": "opera_android",
+        "support": [
+          {
+            "version_added": "≤14"
+          }
+        ]
+      },
+      {
+        "browser": "safari",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "safari_ios",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "samsunginternet_android",
+        "support": [
+          {
+            "version_added": "1.0"
+          }
+        ]
+      },
+      {
+        "browser": "webview_android",
+        "support": [
+          {
+            "version_added": "4.4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "event": "added_nonnull",
+    "path": "html.elements.tr.bgcolor",
+    "support_changes": [
+      {
+        "browser": "chrome",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "chrome_android",
+        "support": [
+          {
+            "version_added": "18"
+          }
+        ]
+      },
+      {
+        "browser": "edge",
+        "support": [
+          {
+            "version_added": "12"
+          }
+        ]
+      },
+      {
+        "browser": "oculus",
+        "support": [
+          {
+            "version_added": "5.0"
+          }
+        ]
+      },
+      {
+        "browser": "opera",
+        "support": [
+          {
+            "version_added": "≤15"
+          }
+        ]
+      },
+      {
+        "browser": "opera_android",
+        "support": [
+          {
+            "version_added": "≤14"
+          }
+        ]
+      },
+      {
+        "browser": "safari",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "safari_ios",
+        "support": [
+          {
+            "version_added": "1"
+          }
+        ]
+      },
+      {
+        "browser": "samsunginternet_android",
+        "support": [
+          {
+            "version_added": "1.0"
+          }
+        ]
+      },
+      {
+        "browser": "webview_android",
+        "support": [
+          {
+            "version_added": "4.4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "event": "added_stable",
+    "path": "api.CanvasRenderingContext2D.fontKerning",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "firefox",
+        "version": "104",
+        "notes": null
+      },
+      {
+        "browser": "firefox_android",
+        "version": "104",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/fontKerning",
+    "spec_url": [
+      "https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-fontkerning"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Document.exitPictureInPicture",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Document/exitPictureInPicture",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-document-exitpictureinpicture"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Document.pictureInPictureElement",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Document/pictureInPictureElement",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-documentorshadowroot-pictureinpictureelement①⑤"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Document.pictureInPictureEnabled",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Document/pictureInPictureEnabled",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-document-pictureinpictureenabled"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Element.setHTML",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Element/setHTML",
+    "spec_url": ["https://wicg.github.io/sanitizer-api/#dom-element-sethtml"],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.HTMLElement.focus.options_focusVisible_parameter",
+    "description": "<code>options.focusVisible</code> parameter",
+    "browsers": [
+      {
+        "browser": "firefox",
+        "version": "104",
+        "notes": null
+      },
+      {
+        "browser": "firefox_android",
+        "version": "104",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": null,
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.HTMLVideoElement.disablePictureInPicture",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/disablePictureInPicture",
+    "spec_url": ["https://w3c.github.io/picture-in-picture/#disable-pip"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.HTMLVideoElement.enterpictureinpicture_event",
+    "description": "<code>enterpictureinpicture</code> event",
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/enterpictureinpicture_event",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#eventdef-htmlvideoelement-enterpictureinpicture",
+      "https://w3c.github.io/picture-in-picture/#dom-htmlvideoelement-onenterpictureinpicture"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.HTMLVideoElement.leavepictureinpicture_event",
+    "description": "<code>leavepictureinpicture</code> event",
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/leavepictureinpicture_event",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#eventdef-htmlvideoelement-leavepictureinpicture",
+      "https://w3c.github.io/picture-in-picture/#dom-htmlvideoelement-onleavepictureinpicture"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.HTMLVideoElement.requestPictureInPicture",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/requestPictureInPicture",
+    "spec_url": ["https://w3c.github.io/picture-in-picture/#request-pip"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.NavigateEvent.intercept",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": [
+      "https://wicg.github.io/navigation-api/#dom-navigateevent-intercept"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.NavigateEvent.scroll",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": [
+      "https://wicg.github.io/navigation-api/#dom-navigateevent-scroll"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Navigator.windowControlsOverlay",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": [
+      "https://wicg.github.io/window-controls-overlay/#windowcontrolsoverlay-interface"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureEvent",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureEvent",
+    "spec_url": ["https://w3c.github.io/picture-in-picture/#event-types"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureEvent.PictureInPictureEvent",
+    "description": "<code>PictureInPictureEvent()</code> constructor",
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureEvent/PictureInPictureEvent",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#dom-pictureinpictureevent-pictureinpictureevent"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureEvent.pictureInPictureWindow",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureEvent/pictureInPictureWindow",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#dom-pictureinpictureevent-pictureinpicturewindow"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureWindow",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#interface-picture-in-picture-window"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureWindow.height",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/height",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-pictureinpicturewindow-height"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureWindow.resize_event",
+    "description": "<code>resize</code> event",
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/resize_event",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#eventdef-pictureinpicturewindow-resize",
+      "https://w3c.github.io/picture-in-picture/#dom-pictureinpicturewindow-onresize"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.PictureInPictureWindow.width",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/width",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-pictureinpicturewindow-width"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.SVGStyleElement.disabled",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "firefox",
+        "version": "104",
+        "notes": null
+      },
+      {
+        "browser": "firefox_android",
+        "version": "104",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/SVGStyleElement/disabled",
+    "spec_url": [
+      "https://svgwg.org/svg2-draft/styling.html#__svg__SVGStyleElement__disabled"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Sanitizer",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Sanitizer",
+    "spec_url": ["https://wicg.github.io/sanitizer-api/#sanitizer-api"],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.Sanitizer.Sanitizer",
+    "description": "<code>Sanitizer()</code> constructor",
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/Sanitizer/Sanitizer",
+    "spec_url": [
+      "https://wicg.github.io/sanitizer-api/#dom-sanitizer-sanitizer"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": true,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.ShadowRoot.pictureInPictureElement",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/ShadowRoot/pictureInPictureElement",
+    "spec_url": [
+      "https://w3c.github.io/picture-in-picture/#ref-for-dom-documentorshadowroot-pictureinpictureelement①⑤"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.WindowControlsOverlay",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/WindowControlsOverlay",
+    "spec_url": [
+      "https://wicg.github.io/window-controls-overlay/#windowcontrolsoverlay-interface"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.WindowControlsOverlay.geometrychange_event",
+    "description": "<code>geometrychange</code> event",
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/WindowControlsOverlay/geometrychange_event",
+    "spec_url": [
+      "https://wicg.github.io/window-controls-overlay/#the-ongeometrychange-attribute"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.WindowControlsOverlay.getTitlebarAreaRect",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/WindowControlsOverlay/getTitlebarAreaRect",
+    "spec_url": [
+      "https://wicg.github.io/window-controls-overlay/#the-gettitlebararearect-method"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.WindowControlsOverlay.visible",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/WindowControlsOverlay/visible",
+    "spec_url": [
+      "https://wicg.github.io/window-controls-overlay/#the-visible-attribute"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.WindowControlsOverlayGeometryChangeEvent",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/WindowControlsOverlayGeometryChangeEvent",
+    "spec_url": [
+      "https://wicg.github.io/window-controls-overlay/#windowcontrolsoverlay-interface"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.WindowControlsOverlayGeometryChangeEvent.WindowControlsOverlayGeometryChangeEvent",
+    "description": "<code>WindowControlsOverlayGeometryChangeEvent()</code> constructor",
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/WindowControlsOverlayGeometryChangeEvent/WindowControlsOverlayGeometryChangeEvent",
+    "spec_url": [
+      "https://wicg.github.io/window-controls-overlay/#windowcontrolsoverlay-interface"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.WindowControlsOverlayGeometryChangeEvent.titlebarAreaRect",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/WindowControlsOverlayGeometryChangeEvent/titlebarAreaRect",
+    "spec_url": [
+      "https://wicg.github.io/window-controls-overlay/#windowcontrolsoverlay-interface"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "api.WindowControlsOverlayGeometryChangeEvent.visible",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/API/WindowControlsOverlayGeometryChangeEvent/visible",
+    "spec_url": [
+      "https://wicg.github.io/window-controls-overlay/#windowcontrolsoverlay-interface"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.at-rules.container",
+    "description": "<code>@container</code>",
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@container",
+    "spec_url": ["https://drafts.csswg.org/css-contain-3/#container-rule"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.properties.contain.inline-size",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/contain#inline-size",
+    "spec_url": [
+      "https://drafts.csswg.org/css-contain-3/#valdef-contain-inline-size"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.selectors.has",
+    "description": "<code>:has()</code>",
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:has",
+    "spec_url": ["https://drafts.csswg.org/selectors/#relational"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "css.selectors.modal",
+    "description": "<code>:modal</code>",
+    "browsers": [
+      {
+        "browser": "chrome",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "chrome_android",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "edge",
+        "version": "105",
+        "notes": null
+      },
+      {
+        "browser": "webview_android",
+        "version": "105",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:modal",
+    "spec_url": ["https://drafts.csswg.org/selectors/#modal-state"],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "javascript.builtins.Array.findLast",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "firefox",
+        "version": "104",
+        "notes": null
+      },
+      {
+        "browser": "firefox_android",
+        "version": "104",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/findLast",
+    "spec_url": [
+      "https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.findlast"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "javascript.builtins.Array.findLastIndex",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "firefox",
+        "version": "104",
+        "notes": null
+      },
+      {
+        "browser": "firefox_android",
+        "version": "104",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/findLastIndex",
+    "spec_url": [
+      "https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.findlastindex"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "javascript.builtins.TypedArray.findLast",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "firefox",
+        "version": "104",
+        "notes": null
+      },
+      {
+        "browser": "firefox_android",
+        "version": "104",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/findLast",
+    "spec_url": [
+      "https://tc39.es/ecma262/multipage/indexed-collections.html#sec-%typedarray%.prototype.findlast"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "added_stable",
+    "path": "javascript.builtins.TypedArray.findLastIndex",
+    "description": null,
+    "browsers": [
+      {
+        "browser": "firefox",
+        "version": "104",
+        "notes": null
+      },
+      {
+        "browser": "firefox_android",
+        "version": "104",
+        "notes": null
+      }
+    ],
+    "mdn_url": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/findLastIndex",
+    "spec_url": [
+      "https://tc39.es/ecma262/multipage/indexed-collections.html#sec-%typedarray%.prototype.findlastindex"
+    ],
+    "status": {
+      "deprecated": false,
+      "experimental": false,
+      "standard_track": true
+    }
+  },
+  {
+    "event": "removed_stable",
+    "path": "api.IDBFactory.open.options_parameter",
+    "description": "<code>options</code> parameter for setting temporary/persistent storage.",
+    "browsers": [
+      {
+        "browser": "firefox",
+        "version": "104",
+        "notes": null
+      },
+      {
+        "browser": "firefox_android",
+        "version": "104",
+        "notes": null
+      }
+    ],
+    "mdn_url": null,
+    "spec_url": null,
+    "status": {
+      "deprecated": true,
+      "experimental": false,
+      "standard_track": false
+    }
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.HTMLAnchorElement",
+    "subfeatures": ["api.HTMLAnchorElement.attributionSourceId"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.HTMLFormElement",
+    "subfeatures": ["api.HTMLFormElement.rel", "api.HTMLFormElement.relList"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.KeyboardLayoutMap",
+    "subfeatures": ["api.KeyboardLayoutMap.@@iterator"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.MediaDevices",
+    "subfeatures": ["api.MediaDevices.setCaptureHandleConfig"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.MediaStreamTrack",
+    "subfeatures": [
+      "api.MediaStreamTrack.capturehandlechange_event",
+      "api.MediaStreamTrack.getCaptureHandle"
+    ]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.OffscreenCanvas",
+    "subfeatures": [
+      "api.OffscreenCanvas.contextlost_event",
+      "api.OffscreenCanvas.contextrestored_event"
+    ]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.Path2D",
+    "subfeatures": ["api.Path2D.roundRect"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.PerformanceEventTiming",
+    "subfeatures": ["api.PerformanceEventTiming.interactionId"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.PublicKeyCredential",
+    "subfeatures": ["api.PublicKeyCredential.authenticatorAttachment"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.RTCRtpSender",
+    "subfeatures": ["api.RTCRtpSender.transform"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.RTCStatsReport",
+    "subfeatures": ["api.RTCStatsReport.@@iterator"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.Screen",
+    "subfeatures": ["api.Screen.isExtended"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "api.WebGL2RenderingContext",
+    "subfeatures": ["api.WebGL2RenderingContext.lineWidth"]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "css.at-rules.font-face",
+    "subfeatures": [
+      "css.at-rules.font-face.OpenType_CBDT_CBLC",
+      "css.at-rules.font-face.OpenType_COLRv0",
+      "css.at-rules.font-face.OpenType_COLRv1",
+      "css.at-rules.font-face.OpenType_SBIX",
+      "css.at-rules.font-face.OpenType_SVG"
+    ]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "css.properties.font-family",
+    "subfeatures": [
+      "css.properties.font-family.math",
+      "css.properties.font-family.system-ui"
+    ]
+  },
+  {
+    "event": "added_subfeatures",
+    "path": "css.properties.font-size",
+    "subfeatures": ["css.properties.font-size.math"]
+  }
+]
