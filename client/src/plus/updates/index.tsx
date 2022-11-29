@@ -20,6 +20,7 @@ import {
   useBCD,
   useUpdates,
 } from "./api";
+import { camelWrap } from "../../utils";
 
 const CATEGORY_TO_NAME = {
   api: "Web APIs",
@@ -152,7 +153,7 @@ function Item({ event: { event, path, mdn_url } }: { event: Event }) {
       }
     >
       <summary>
-        <code>{path.split(".").slice(1).join(".")}</code>
+        <code>{camelWrap(path.split(".").slice(1).join("."))}</code>
         <i>{CATEGORY_TO_NAME[category]}</i>
         {EVENT_TO_VERB[event]}
         <Icon name="chevron" />
