@@ -1,19 +1,25 @@
 import Container from "../../ui/atoms/container";
-import bcd from "@mdn/browser-compat-data";
-import type BCD from "@mdn/browser-compat-data/types";
 
 import "./index.scss";
 import { Icon } from "../../ui/atoms/icon";
 import BrowserCompatibilityTable from "../../document/ingredients/browser-compatibility-table";
 import { useLocale } from "../../hooks";
 import Mandala from "../../ui/molecules/mandala";
-import data from "./dummy-changes.json";
 import { browserToIconName } from "../../document/ingredients/browser-compatibility-table/headers";
 import useSWR from "swr";
 import { DocMetadata } from "../../../../libs/types/document";
 import BookmarkMenu from "../../ui/organisms/article-actions/bookmark-menu";
 import { NotificationsWatchMenu } from "../../ui/organisms/article-actions/notifications-watch-menu";
 import { Button } from "../../ui/atoms/button";
+import { useState } from "react";
+import {
+  BrowserGroup,
+  Event,
+  Group,
+  GroupType,
+  useBCD,
+  useUpdates,
+} from "./api";
 
 const CATEGORY_TO_NAME = {
   api: "Web APIs",
@@ -34,6 +40,7 @@ const EVENT_TO_VERB = {
 };
 
 export default function Updates() {
+  const { data } = useUpdates();
   return (
     <div className="updates">
       <header className="plus-header-mandala">
@@ -55,84 +62,43 @@ export default function Updates() {
         </Container>
       </header>
       <Container>
-        {data
-          .slice(0, 10)
-          .reduce<typeof data[]>((acc, curr) => {
-            const last = acc.pop();
-            if (last) {
-              if (
-                last[0].event === curr.event ||
-                (["added_stable", "removed_stable"].includes(last[0].event) &&
-                  ["added_stable", "removed_stable"].includes(curr.event))
-              ) {
-                last.push(curr);
-                acc.push(last);
-              } else {
-                acc.push(last);
-                acc.push([curr]);
-              }
-            } else {
-              acc.push([curr]);
-            }
-            return acc;
-          }, [])
-          .map((events) => {
-            const type = events[0].event;
-            if (
-              ["added_stable", "removed_stable", "added_preview"].includes(type)
-            ) {
-              return (
-                <>
-                  {events
-                    .reduce<typeof events[]>((acc, curr) => {
-                      const exploded = curr?.browsers?.map((x) => ({
-                        ...curr,
-                        browsers: [x],
-                      }));
-                      exploded?.forEach((event) => {
-                        const existing = acc.find(
-                          (x) =>
-                            x?.[0]?.browsers?.[0].browser ===
-                            event.browsers[0].browser
-                        );
-                        if (existing) {
-                          existing.push(event);
-                        } else {
-                          acc.push([event]);
-                        }
-                      });
-                      return acc;
-                    }, [])
-                    .map((events) => (
-                      <BrowserGroup events={events} />
-                    ))}
-                </>
-              );
-            } else if (type === "added_subfeatures") {
-              return <SubfeaturesGroup events={events} />;
-            } else if (type === "added_nonnull") {
-              return <NonNullGroup events={events} />;
-            }
-          })}
+        {data?.map((group) => (
+          <GenericGroup group={group} />
+        ))}
       </Container>
     </div>
   );
 }
 
-function BrowserGroup({ events }) {
-  const browser = events[0].browsers?.[0];
-  const releaseDate =
-    bcd.browsers[browser.browser].releases[browser.version].release_date;
+function GenericGroup({ group }: { group: Group | BrowserGroup }) {
+  switch (group.type) {
+    case GroupType.Browser:
+      return <BrowserGroupComponent group={group as BrowserGroup} />;
+    case GroupType.Subfeatures:
+      return <SubfeaturesGroup group={group} />;
+    case GroupType.NonNull:
+      return <NonNullGroup group={group} />;
+    default:
+      return null;
+  }
+}
+
+function BrowserGroupComponent({
+  group: { browser, events },
+}: {
+  group: BrowserGroup;
+}) {
   return (
     <div className="group">
       <header>
-        <BrowserIconName browser={browser} />
+        <Icon name={browserToIconName(browser.browser)} />
+        {`${browser.name} ${browser.version}`}
         <span className="number-badge">
           {events.length} {events.length === 1 ? "update" : "updates"}
         </span>
-        {releaseDate && (
-          <time dateTime={releaseDate}>
-            {new Date(releaseDate).toLocaleDateString(undefined, {
+        {browser.releaseDate && (
+          <time dateTime={browser.releaseDate}>
+            {new Date(browser.releaseDate).toLocaleDateString(undefined, {
               dateStyle: "medium",
             })}
           </time>
@@ -145,25 +111,7 @@ function BrowserGroup({ events }) {
   );
 }
 
-function BrowserIconName({
-  browser,
-}: {
-  browser:
-    | {
-        browser: string;
-        version: string;
-      }
-    | undefined;
-}) {
-  return browser ? (
-    <>
-      <Icon name={browserToIconName(browser.browser)} />
-      {`${bcd.browsers[browser.browser].name} ${browser.version}`}
-    </>
-  ) : null;
-}
-
-function SubfeaturesGroup({ events }) {
+function SubfeaturesGroup({ group: { events } }: { group: Group }) {
   return (
     <div className="group">
       <header>
@@ -177,7 +125,7 @@ function SubfeaturesGroup({ events }) {
   );
 }
 
-function NonNullGroup({ events }) {
+function NonNullGroup({ group: { events } }: { group: Group }) {
   return (
     <div className="group">
       <header>
@@ -191,29 +139,37 @@ function NonNullGroup({ events }) {
   );
 }
 
-function Item({ event: { event, path, mdn_url } }) {
+function Item({ event: { event, path, mdn_url } }: { event: Event }) {
+  const [isOpen, setIsOpen] = useState(false);
   const locale = useLocale() || "en-US";
-  const data = path
-    .split(".")
-    .reduce((prev, curr) => prev[curr], bcd) as unknown as BCD.Identifier;
   const category = path.split(".")[0];
+  const { data } = useBCD(path);
   return (
-    <details className={`category-${category}`}>
+    <details
+      className={`category-${category}`}
+      onToggle={({ target }) =>
+        target instanceof HTMLDetailsElement && setIsOpen(target.open)
+      }
+    >
       <summary>
         <code>{path.split(".").slice(1).join(".")}</code>
         <i>{CATEGORY_TO_NAME[category]}</i>
         {EVENT_TO_VERB[event]}
         <Icon name="chevron" />
       </summary>
-      <div>
-        <ArticleActions mdn_url={mdn_url} />
-        <BrowserCompatibilityTable
-          query={path}
-          data={data}
-          browsers={bcd.browsers}
-          locale={locale}
-        />
-      </div>
+      {isOpen && (
+        <div>
+          <ArticleActions mdn_url={mdn_url} />
+          {data && (
+            <BrowserCompatibilityTable
+              query={path}
+              data={data.data}
+              browsers={data.browsers}
+              locale={locale}
+            />
+          )}
+        </div>
+      )}
     </details>
   );
 }
