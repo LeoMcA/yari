@@ -64,7 +64,7 @@ export default function Updates() {
       </header>
       <Container>
         {data?.map((group) => (
-          <GenericGroup group={group} />
+          <GenericGroup key={group.id} group={group} />
         ))}
       </Container>
     </div>
@@ -106,7 +106,7 @@ function BrowserGroupComponent({
         )}
       </header>
       {events.map((event) => (
-        <Item event={event} />
+        <Item key={event.id} event={event} />
       ))}
     </div>
   );
@@ -120,7 +120,7 @@ function SubfeaturesGroup({ group: { events } }: { group: Group }) {
         Subfeatures added
       </header>
       {events.map((event) => (
-        <Item event={event} />
+        <Item key={event.id} event={event} />
       ))}
     </div>
   );
@@ -134,7 +134,7 @@ function NonNullGroup({ group: { events } }: { group: Group }) {
         Added missing compatibility data
       </header>
       {events.map((event) => (
-        <Item event={event} />
+        <Item key={event.id} event={event} />
       ))}
     </div>
   );

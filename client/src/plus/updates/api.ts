@@ -10,6 +10,7 @@ export enum GroupType {
 }
 
 export interface Group {
+  id: string;
   type: GroupType;
   events: Event[];
 }
@@ -28,6 +29,7 @@ export interface Browser {
 }
 
 export interface Event {
+  id: string;
   event: string;
   path: string;
   mdn_url?: string;
@@ -83,8 +85,9 @@ export function useUpdates() {
             .map((events) => {
               const browser = events[0].browsers?.[0];
               return {
+                id: `${browser?.browser}-${browser?.version}`,
                 type: GroupType.Browser,
-                events: events,
+                events: events.map((e) => ({ id: e.event + e.path, ...e })),
                 browser: browser
                   ? {
                       browser: browser.browser,
@@ -99,14 +102,15 @@ export function useUpdates() {
             });
         }
         return {
+          id: events.reduce((acc, curr) => acc + curr.path, ""),
           type:
             type === "added_subfeatures"
               ? GroupType.Subfeatures
               : GroupType.NonNull,
-          events,
+          events: events.map((e) => ({ id: e.path, ...e })),
         };
       })
-      .flat(1) as GroupList;
+      .flat(1) as unknown as GroupList;
   });
 }
 
