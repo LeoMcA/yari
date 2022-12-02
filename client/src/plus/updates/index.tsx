@@ -12,14 +12,7 @@ import BookmarkMenu from "../../ui/organisms/article-actions/bookmark-menu";
 import { NotificationsWatchMenu } from "../../ui/organisms/article-actions/notifications-watch-menu";
 import { Button } from "../../ui/atoms/button";
 import { useState } from "react";
-import {
-  BrowserGroup,
-  Event,
-  Group,
-  GroupType,
-  useBCD,
-  useUpdates,
-} from "./api";
+import { Group, Event, useBCD, useUpdates, GroupType } from "./api";
 import { camelWrap } from "../../utils";
 
 const CATEGORY_TO_NAME = {
@@ -64,83 +57,57 @@ export default function Updates() {
       </header>
       <Container>
         {data?.map((group) => (
-          <GenericGroup key={group.id} group={group} />
+          <GroupComponent key={group.id} group={group} />
         ))}
       </Container>
     </div>
   );
 }
 
-function GenericGroup({ group }: { group: Group | BrowserGroup }) {
-  switch (group.type) {
-    case GroupType.Browser:
-      return <BrowserGroupComponent group={group as BrowserGroup} />;
-    case GroupType.Subfeatures:
-      return <SubfeaturesGroup group={group} />;
-    case GroupType.NonNull:
-      return <NonNullGroup group={group} />;
-    default:
-      return null;
-  }
-}
+function GroupComponent({ group }: { group: Group }) {
+  const { type, date, events } = group;
+  const browser = "browser" in group ? group.browser : null;
+  const metadata = browser
+    ? {
+        icon: browserToIconName(browser.browser),
+        title: `${browser.name} ${browser.version}`,
+      }
+    : type === GroupType.Subfeatures
+    ? {
+        icon: "star",
+        title: "Subfeatures added",
+      }
+    : type === GroupType.NonNull
+    ? {
+        icon: "add",
+        title: "Added missing compatibility data",
+      }
+    : null;
 
-function BrowserGroupComponent({
-  group: { browser, events },
-}: {
-  group: BrowserGroup;
-}) {
-  return (
+  return metadata ? (
     <div className="group">
       <header>
-        <Icon name={browserToIconName(browser.browser)} />
-        {`${browser.name} ${browser.version}`}
-        <span className="number-badge">
-          {events.length} {events.length === 1 ? "update" : "updates"}
-        </span>
-        {browser.releaseDate && (
-          <time dateTime={browser.releaseDate}>
-            {new Date(browser.releaseDate).toLocaleDateString(undefined, {
-              dateStyle: "medium",
-            })}
-          </time>
+        <Icon name={metadata.icon} />
+        {metadata.title}
+        {browser && (
+          <span className="number-badge">
+            {events.length} {events.length === 1 ? "update" : "updates"}
+          </span>
         )}
+        <time dateTime={date}>
+          {new Date(date).toLocaleDateString(undefined, {
+            dateStyle: "medium",
+          })}
+        </time>
       </header>
       {events.map((event) => (
-        <Item key={event.id} event={event} />
+        <ItemComponent key={event.id} event={event} />
       ))}
     </div>
-  );
+  ) : null;
 }
 
-function SubfeaturesGroup({ group: { events } }: { group: Group }) {
-  return (
-    <div className="group">
-      <header>
-        <Icon name="star" />
-        Subfeatures added
-      </header>
-      {events.map((event) => (
-        <Item key={event.id} event={event} />
-      ))}
-    </div>
-  );
-}
-
-function NonNullGroup({ group: { events } }: { group: Group }) {
-  return (
-    <div className="group">
-      <header>
-        <Icon name="add" />
-        Added missing compatibility data
-      </header>
-      {events.map((event) => (
-        <Item key={event.id} event={event} />
-      ))}
-    </div>
-  );
-}
-
-function Item({ event: { event, path, mdn_url } }: { event: Event }) {
+function ItemComponent({ event: { event, path, mdn_url } }: { event: Event }) {
   const [isOpen, setIsOpen] = useState(false);
   const locale = useLocale() || "en-US";
   const category = path.split(".")[0];

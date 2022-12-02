@@ -9,23 +9,23 @@ export enum GroupType {
   NonNull,
 }
 
-export interface Group {
+interface GenericGroup {
   id: string;
   type: GroupType;
   events: Event[];
+  date: string;
 }
 
-export interface BrowserGroup extends Group {
+interface BrowserGroup extends GenericGroup {
   browser: Browser;
 }
 
-type GroupList = Array<Group | BrowserGroup>;
+export type Group = GenericGroup | BrowserGroup;
 
 export interface Browser {
   browser: string;
   name: string;
   version: string;
-  releaseDate: string;
 }
 
 export interface Event {
@@ -36,7 +36,7 @@ export interface Event {
 }
 
 export function useUpdates() {
-  return useSWR<GroupList>("dummy_updates", async (key) => {
+  return useSWR<Group[]>("dummy_updates", async (key) => {
     return data
       .slice(0, 60)
       .reduce<typeof data[]>((acc, curr) => {
@@ -88,14 +88,16 @@ export function useUpdates() {
                 id: `${browser?.browser}-${browser?.version}`,
                 type: GroupType.Browser,
                 events: events.map((e) => ({ id: e.event + e.path, ...e })),
+                date:
+                  (browser
+                    ? bcd.browsers[browser.browser].releases[browser.version]
+                        .release_date
+                    : null) || new Date().toISOString(),
                 browser: browser
                   ? {
                       browser: browser.browser,
                       name: bcd.browsers[browser.browser].name,
                       version: browser.version,
-                      releaseDate:
-                        bcd.browsers[browser.browser].releases[browser.version]
-                          .release_date,
                     }
                   : undefined,
               };
@@ -108,9 +110,10 @@ export function useUpdates() {
               ? GroupType.Subfeatures
               : GroupType.NonNull,
           events: events.map((e) => ({ id: e.path, ...e })),
+          date: new Date().toISOString(),
         };
       })
-      .flat(1) as unknown as GroupList;
+      .flat(1) as Group[];
   });
 }
 
