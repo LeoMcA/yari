@@ -195,7 +195,7 @@ function ArticleActions({ mdn_url }: { mdn_url?: string }) {
     }
   );
 
-  return doc ? (
+  return (
     <nav>
       <Button
         type="action"
@@ -209,5 +209,5 @@ function ArticleActions({ mdn_url }: { mdn_url?: string }) {
       <NotificationsWatchMenu doc={doc} />
       <BookmarkMenu doc={doc} />
     </nav>
-  ) : null;
+  );
 }
