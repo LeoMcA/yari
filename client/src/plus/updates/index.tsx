@@ -14,6 +14,8 @@ import { Button } from "../../ui/atoms/button";
 import { useState } from "react";
 import { Group, Event, useBCD, useUpdates, GroupType } from "./api";
 import { camelWrap } from "../../utils";
+import LoadMore from "../../ui/molecules/load-more";
+import { Loading } from "../../ui/atoms/loading";
 
 const CATEGORY_TO_NAME = {
   api: "Web APIs",
@@ -34,7 +36,8 @@ const EVENT_TO_VERB = {
 };
 
 export default function Updates() {
-  const { data } = useUpdates();
+  const { data, setSize, error, isLoading, atEnd } = useUpdates();
+
   return (
     <div className="updates">
       <header className="plus-header-mandala">
@@ -56,9 +59,21 @@ export default function Updates() {
         </Container>
       </header>
       <Container>
-        {data?.map((group) => (
-          <GroupComponent key={group.id} group={group} />
-        ))}
+        {data ? (
+          <>
+            {data.flat(1).map((group) => (
+              <GroupComponent key={group.id} group={group} />
+            ))}
+            <LoadMore
+              atEnd={atEnd}
+              setSize={setSize}
+              loading={isLoading}
+              error={error}
+            />
+          </>
+        ) : (
+          <Loading />
+        )}
       </Container>
     </div>
   );

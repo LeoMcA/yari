@@ -22,6 +22,7 @@ import {
   FrequentlyViewedCollection,
   useFrequentlyViewed,
 } from "./frequently-viewed";
+import LoadMore from "../../ui/molecules/load-more";
 dayjs.extend(relativeTime);
 
 export function CollectionComponent() {
@@ -32,7 +33,6 @@ export function CollectionComponent() {
     data: itemPages,
     error: itemError,
     isLoading: itemLoading,
-    size,
     setSize,
     atEnd,
     mutate,
@@ -69,23 +69,12 @@ export function CollectionComponent() {
             <ItemComponent key={item.id} {...{ item, mutate }} />
           )) ||
           (itemLoading && <Loading />)}
-        {!atEnd && (
-          <div className="pagination">
-            <Button
-              type="primary"
-              onClickHandler={() => {
-                setSize(size + 1);
-              }}
-              isDisabled={itemLoading}
-            >
-              {itemLoading
-                ? "Loading..."
-                : itemError
-                ? "Error (try again)"
-                : "Show more"}
-            </Button>
-          </div>
-        )}
+        <LoadMore
+          atEnd={atEnd}
+          setSize={setSize}
+          loading={itemLoading}
+          error={itemError}
+        />
       </Container>
     </div>
   ) : (
