@@ -16,6 +16,7 @@ import { Group, Event, useBCD, useUpdates, GroupType } from "./api";
 import { camelWrap } from "../../utils";
 import LoadMore from "../../ui/molecules/load-more";
 import { Loading } from "../../ui/atoms/loading";
+import { useUserData } from "../../user-context";
 
 const CATEGORY_TO_NAME = {
   api: "Web APIs",
@@ -122,11 +123,9 @@ function GroupComponent({ group }: { group: Group }) {
   ) : null;
 }
 
-function ItemComponent({ event: { event, path, mdn_url } }: { event: Event }) {
+function ItemComponent({ event }: { event: Event }) {
   const [isOpen, setIsOpen] = useState(false);
-  const locale = useLocale() || "en-US";
-  const category = path.split(".")[0];
-  const { data } = useBCD(path);
+  const category = event.path.split(".")[0];
   return (
     <details
       className={`category-${category}`}
@@ -135,32 +134,39 @@ function ItemComponent({ event: { event, path, mdn_url } }: { event: Event }) {
       }
     >
       <summary>
-        <code>{camelWrap(path.split(".").slice(1).join("."))}</code>
+        <code>{camelWrap(event.path.split(".").slice(1).join("."))}</code>
         <i>{CATEGORY_TO_NAME[category]}</i>
-        {EVENT_TO_VERB[event]}
+        {EVENT_TO_VERB[event.event]}
         <Icon name="chevron" />
       </summary>
-      {isOpen && (
-        <div>
-          <ArticleActions mdn_url={mdn_url} />
-          {data && (
-            <BrowserCompatibilityTable
-              query={path}
-              data={data.data}
-              browsers={data.browsers}
-              locale={locale}
-            />
-          )}
-        </div>
-      )}
+      {isOpen && <ItemInnerComponent event={event} />}
     </details>
   );
 }
 
+function ItemInnerComponent({ event: { path, mdn_url } }: { event: Event }) {
+  const locale = useLocale() || "en-US";
+  const { data } = useBCD(path);
+  return (
+    <div>
+      <ArticleActions mdn_url={mdn_url} />
+      {data && (
+        <BrowserCompatibilityTable
+          query={path}
+          data={data.data}
+          browsers={data.browsers}
+          locale={locale}
+        />
+      )}
+    </div>
+  );
+}
+
 function ArticleActions({ mdn_url }: { mdn_url?: string }) {
+  const userData = useUserData();
   const url = mdn_url?.replace("https://developer.mozilla.org", "/en-US");
   const { data: doc } = useSWR<DocMetadata>(
-    () => url && `${url}/metadata.json`,
+    () => userData?.isAuthenticated && url && `${url}/metadata.json`,
     async (url) => {
       const response = await fetch(url);
 
