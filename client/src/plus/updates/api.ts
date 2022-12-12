@@ -82,8 +82,10 @@ export function useUpdates() {
                     (x) => x?.[0]?.browsers?.[0].browser === browser
                   );
                   if (existing) {
+                    // @ts-ignore
                     existing.push(event);
                   } else {
+                    // @ts-ignore
                     acc.push([event]);
                   }
                 });
