@@ -1,5 +1,4 @@
 import bcd from "@mdn/browser-compat-data";
-import type BCD from "@mdn/browser-compat-data/types";
 import useSWR from "swr";
 import useSWRInfinite from "swr/infinite";
 import data from "./dummy-changes.json";
@@ -135,12 +134,14 @@ export function useUpdates() {
 }
 
 export function useBCD(path: string) {
-  return useSWR(path, (key) => {
-    return {
-      data: key
-        .split(".")
-        .reduce((prev, curr) => prev[curr], bcd) as unknown as BCD.Identifier,
-      browsers: bcd.browsers,
-    };
+  return useSWR(`/bcd/v0/current/${path}.json`, async (key) => {
+    const res = await fetch(key);
+    if (res.ok) {
+      return await res.json();
+    }
+    if (res.status === 404) {
+      return;
+    }
+    throw new Error(`${res.status}: ${res.statusText}`);
   });
 }

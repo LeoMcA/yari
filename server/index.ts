@@ -9,6 +9,7 @@ import send from "send";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import cookieParser from "cookie-parser";
 import openEditor from "open-editor";
+import getBCDDataForPath from "@mdn/bcd-utils-api";
 
 import {
   buildDocument,
@@ -53,6 +54,15 @@ async function buildDocumentFromURL(url) {
 }
 
 const app = express();
+
+const bcdRouter = express.Router({ caseSensitive: true });
+
+bcdRouter.get("/v0/current/:path.json", async (req, res) => {
+  const data = getBCDDataForPath(req.params.path);
+  return data ? res.json(data) : res.status(404).send("BCD path not found");
+});
+
+app.use("/bcd", bcdRouter);
 
 // Depending on if FAKE_V1_API is set, we either respond with JSON based
 // on `.json` files on disk or we proxy the requests to Kuma.
@@ -187,6 +197,7 @@ app.get("/*/contributors.txt", async (req, res) => {
 });
 
 app.get("/*", async (req, res, ...args) => {
+  console.log(req.path);
   if (req.url.startsWith("/_")) {
     // URLs starting with _ is exclusively for the meta-work and if there
     // isn't already a handler, it's something wrong.
