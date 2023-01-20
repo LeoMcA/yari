@@ -1776,10 +1776,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@mdn/browser-compat-data@4.1.17":
-  version "4.1.17"
-  resolved "https://registry.yarnpkg.com/@mdn/browser-compat-data/-/browser-compat-data-4.1.17.tgz#0be6fb46ae6730467238d155fe3fd973dfdf52ce"
-  integrity sha512-o7hCdjCR5S1beYsOlfwqeXMujqlryV8/nJlM7xmv8HIAb4E4SN/YOE4cwmvZErUkgiVZkApvUDePDnIcxthmAQ==
+"@mdn/browser-compat-data@5.2.30":
+  version "5.2.30"
+  resolved "https://registry.yarnpkg.com/@mdn/browser-compat-data/-/browser-compat-data-5.2.30.tgz#67aac0e3fbd2da9ac386d325d05fc324c0b93111"
+  integrity sha512-j48TKjgXHuUXzdk5MuPI7BBjryHQeI2TFWhcULBjiCkqXmW2hBoKGwQNEXTSzCVQmYvEat15cDDPU3NIQmY50w==
 
 "@mdn/dinocons@^0.5.5":
   version "0.5.5"
