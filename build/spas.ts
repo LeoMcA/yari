@@ -24,10 +24,40 @@ import { isValidLocale } from "../libs/locale-utils/index.js";
 import { DocFrontmatter, NewsItem } from "../libs/types/document.js";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { renderHTML } from "../ssr/dist/main.js";
+// import { renderHTML } from "../ssr/dist/main.js";
 import { splitSections } from "./utils.js";
 import { findByURL } from "../content/document.js";
 import { buildDocument } from "./index.js";
+
+async function renderHTML(url, context) {
+  // 1. Read index.html
+  const template = fs.readFileSync(
+    path.resolve("client/build/index.html"),
+    "utf-8"
+  );
+
+  // 3. Load the server entry. ssrLoadModule automatically transforms
+  //    ESM source code to be usable in Node.js! There is no bundling
+  //    required, and provides efficient invalidation similar to HMR.
+  const { render } = await import("../client/build/ssr/server.js");
+
+  // 4. render the app HTML. This assumes entry-server.js's exported
+  //     `render` function calls appropriate framework SSR APIs,
+  //    e.g. ReactDOMServer.renderToString()
+  const appHtml = await render(url, context);
+
+  // 5. Inject the app-rendered HTML into the template.
+  return template.replace(`<!--ssr-outlet-->`, appHtml).replace(
+    `<!--hydration-outlet-->`,
+    `<script type="application/json" id="hydration">${
+      // https://html.spec.whatwg.org/multipage/scripting.html#restrictions-for-contents-of-script-elements
+      JSON.stringify(context).replace(
+        /<(?=!--|\/?script)/gi,
+        String.raw`\u003c`
+      )
+    }</script>`
+  );
+}
 
 const FEATURED_ARTICLES = [
   "Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL",
@@ -68,7 +98,10 @@ async function buildContributorSpotlight(
     };
     const context = { hyData };
 
-    const html = renderHTML(`/${locale}/${prefix}/${contributor}`, context);
+    const html = await renderHTML(
+      `/${locale}/${prefix}/${contributor}`,
+      context
+    );
     const outPath = path.join(
       BUILD_OUT_ROOT,
       locale.toLowerCase(),
@@ -105,7 +138,7 @@ export async function buildSPAs(options: {
 
   // The URL isn't very important as long as it triggers the right route in the <App/>
   const url = `/${DEFAULT_LOCALE}/404.html`;
-  const html = renderHTML(url, { pageNotFound: true });
+  const html = await renderHTML(url, { pageNotFound: true });
   const outPath = path.join(
     BUILD_OUT_ROOT,
     DEFAULT_LOCALE.toLowerCase(),
@@ -169,7 +202,7 @@ export async function buildSPAs(options: {
           noIndexing,
         };
 
-        const html = renderHTML(url, context);
+        const html = await renderHTML(url, context);
         const outPath = path.join(BUILD_OUT_ROOT, pathLocale, prefix);
         fs.mkdirSync(outPath, { recursive: true });
         const filePath = path.join(outPath, "index.html");
@@ -226,7 +259,7 @@ export async function buildSPAs(options: {
         pageTitle: `${frontMatter.attributes.title || ""} | ${title}`,
       };
 
-      const html = renderHTML(url, context);
+      const html = await renderHTML(url, context);
       const outPath = path.join(
         BUILD_OUT_ROOT,
         locale,
@@ -304,7 +337,7 @@ export async function buildSPAs(options: {
         featuredArticles,
       };
       const context = { hyData };
-      const html = renderHTML(url, context);
+      const html = await renderHTML(url, context);
       const outPath = path.join(BUILD_OUT_ROOT, localeLC);
       fs.mkdirSync(outPath, { recursive: true });
       const filePath = path.join(outPath, "index.html");

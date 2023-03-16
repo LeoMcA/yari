@@ -6,7 +6,7 @@ import Mandala from "../../ui/molecules/mandala";
 
 import "./index.scss";
 const contributorGraphic = `${
-  process.env.PUBLIC_URL || ""
+  import.meta.env.PUBLIC_URL || ""
 }/assets/mdn_contributor.png`;
 
 export function ContributorSpotlight(props: HydrationData<any>) {

@@ -1,6 +1,6 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
 
-const SERVER_PORT = process.env.SERVER_PORT || 5042;
+const SERVER_PORT = import.meta.env.SERVER_PORT || 5042;
 
 console.log(`Setting up a Proxy to localhost:${SERVER_PORT}`);
 

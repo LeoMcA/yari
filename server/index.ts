@@ -18,7 +18,7 @@ import {
 } from "../build/index.js";
 import { findDocumentTranslations } from "../content/translations.js";
 import { Document, Redirect, Image } from "../content/index.js";
-import { CSP_VALUE, DEFAULT_LOCALE } from "../libs/constants/index.js";
+import { DEFAULT_LOCALE } from "../libs/constants/index.js";
 import {
   STATIC_ROOT,
   PROXY_HOSTNAME,
@@ -36,10 +36,58 @@ import flawsRoute from "./flaws.js";
 import { router as translationsRouter } from "./translations.js";
 import { staticMiddlewares, originRequestMiddleware } from "./middlewares.js";
 import { getRoot } from "../content/utils.js";
+import { createServer as createViteServer } from "vite";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { renderHTML } from "../ssr/dist/main.js";
+// import { renderHTML } from "../ssr/dist/main.js";
+
+const vite = await createViteServer({
+  root: "client",
+  server: { middlewareMode: true },
+  appType: "custom",
+});
+
+async function renderHTML(url, context) {
+  try {
+    // 1. Read index.html
+    let template = fs.readFileSync(path.resolve("client/index.html"), "utf-8");
+
+    // 2. Apply Vite HTML transforms. This injects the Vite HMR client,
+    //    and also applies HTML transforms from Vite plugins, e.g. global
+    //    preambles from @vitejs/plugin-react
+    template = await vite.transformIndexHtml(url, template);
+
+    // 3. Load the server entry. ssrLoadModule automatically transforms
+    //    ESM source code to be usable in Node.js! There is no bundling
+    //    required, and provides efficient invalidation similar to HMR.
+    const mod = await vite.ssrLoadModule("/src/server.ts");
+
+    const render = mod.render;
+
+    // 4. render the app HTML. This assumes entry-server.js's exported
+    //     `render` function calls appropriate framework SSR APIs,
+    //    e.g. ReactDOMServer.renderToString()
+    const appHtml = await render(url, context);
+
+    // 5. Inject the app-rendered HTML into the template.
+    return template.replace(`<!--ssr-outlet-->`, appHtml).replace(
+      `<!--hydration-outlet-->`,
+      `<script type="application/json" id="hydration">${
+        // https://html.spec.whatwg.org/multipage/scripting.html#restrictions-for-contents-of-script-elements
+        JSON.stringify(context).replace(
+          /<(?=!--|\/?script)/gi,
+          String.raw`\u003c`
+        )
+      }</script>`
+    );
+  } catch (e) {
+    // If an error is caught, let Vite fix the stack trace so it maps back
+    // to your actual source code.
+    vite.ssrFixStacktrace(e as Error);
+    throw e;
+  }
+}
 
 async function buildDocumentFromURL(url) {
   const document = Document.findByURL(url);
@@ -57,6 +105,8 @@ async function buildDocumentFromURL(url) {
 }
 
 const app = express();
+
+app.use(vite.middlewares);
 
 const bcdRouter = express.Router({ caseSensitive: true });
 
@@ -346,8 +396,9 @@ app.get("/*", async (req, res, ...args) => {
     // TODO: what's this for?
     res.json({ doc: document });
   } else {
-    res.header("Content-Security-Policy", CSP_VALUE);
-    res.send(renderHTML(lookupURL, { doc: document }));
+    // res.header("Content-Security-Policy", CSP_VALUE);
+    const html = await renderHTML(lookupURL, { doc: document });
+    res.send(html);
   }
 });
 

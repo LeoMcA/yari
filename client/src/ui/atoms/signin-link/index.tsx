@@ -26,7 +26,7 @@ export default function SignInLink({
   // needs to be absolute. And we also need to send the absolute URL as the
   // `next` query string parameter so Kuma sends us back when the user has
   // authenticated there.
-  if (process.env.NODE_ENV === "development") {
+  if (import.meta.env.NODE_ENV === "development") {
     const combined = new URL(next, window.location.href);
     next = combined.toString();
     prefix = `http://${KUMA_HOST}`;

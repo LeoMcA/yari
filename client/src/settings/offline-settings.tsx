@@ -1,6 +1,6 @@
 import { Switch } from "../ui/atoms/switch";
 import { getMDNWorker } from "./mdn-worker";
-import useInterval from "@use-it/interval";
+// import useInterval from "@use-it/interval";
 
 import { useEffect, useRef, useState } from "react";
 import UpdateButton from "./update";
@@ -107,11 +107,11 @@ function Settings() {
     setSettings(newSettings);
   };
 
-  useInterval(async () => {
-    const mdnWorker = getMDNWorker();
-    const next = await mdnWorker.status();
-    setStatus({ ...next });
-  }, 500);
+  // useInterval(async () => {
+  //   const mdnWorker = getMDNWorker();
+  //   const next = await mdnWorker.status();
+  //   setStatus({ ...next });
+  // }, 500);
 
   const update = () => {
     const mdnWorker = getMDNWorker();

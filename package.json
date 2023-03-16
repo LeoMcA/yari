@@ -15,11 +15,11 @@
     "analyze": "source-map-explorer 'client/build/static/js/*.js'",
     "analyze:css": "source-map-explorer 'client/build/static/css/*.css'",
     "build": "cross-env NODE_ENV=production ts-node build/cli.ts",
-    "build:client": "cd client && cross-env NODE_ENV=production BABEL_ENV=production INLINE_RUNTIME_CHUNK=false node scripts/build.js",
+    "build:client": "vite build client --outDir build",
     "build:dist": "tsc -p tsconfig.dist.json",
     "build:glean": "cd client && cross-env VIRTUAL_ENV=venv glean translate src/telemetry/metrics.yaml src/telemetry/pings.yaml -f typescript -o src/telemetry/generated",
     "build:prepare": "yarn build:client && yarn build:ssr && yarn tool optimize-client-build && yarn tool google-analytics-code && yarn tool popularities && yarn tool spas && yarn tool gather-git-history && yarn tool build-robots-txt",
-    "build:ssr": "cd ssr && webpack --mode=production",
+    "build:ssr": "vite build client --outDir build/ssr --ssr src/server.ts",
     "build:sw": "cd client/pwa && yarn && yarn build:prod",
     "build:sw-dev": "cd client/pwa && yarn && yarn build",
     "check:tsc": "find . -name 'tsconfig.json' ! -wholename '**/node_modules/**' -print0 | xargs -n1 -P 2 -0 sh -c 'cd `dirname $0` && echo \"🔄 $(pwd)\" && npx tsc --noEmit && echo \"☑️  $(pwd)\" || exit 255'",
@@ -48,8 +48,7 @@
     "test:kumascript": "yarn jest kumascript --env=node",
     "test:prepare": "yarn build:prepare && yarn build && yarn start:static-server",
     "test:testing": "yarn jest --rootDir testing",
-    "tool": "ts-node tool/cli.ts",
-    "watch:ssr": "cd ssr && webpack --mode=production --watch"
+    "tool": "ts-node tool/cli.ts"
   },
   "resolutions": {
     "lodash": ">=4.17.15"
@@ -61,6 +60,7 @@
     "@mdn/browser-compat-data": "^5.2.42",
     "@mozilla/glean": "1.3.0",
     "@use-it/interval": "^1.0.0",
+    "@vitejs/plugin-react": "^3.1.0",
     "@webref/css": "^5.4.4",
     "accept-language-parser": "^1.5.0",
     "async": "^3.2.4",
@@ -118,6 +118,8 @@
     "unified": "^10.1.2",
     "unist-builder": "^3.0.1",
     "unist-util-visit": "^4.1.2",
+    "vite": "^4.2.0",
+    "vite-plugin-svgr": "^2.4.0",
     "web-specs": "^2.51.0"
   },
   "devDependencies": {

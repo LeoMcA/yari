@@ -124,7 +124,7 @@ export default function SearchResults() {
       return await response.json();
     },
     {
-      revalidateOnFocus: process.env.NODE_ENV === "development",
+      revalidateOnFocus: import.meta.env.NODE_ENV === "development",
     }
   );
 
