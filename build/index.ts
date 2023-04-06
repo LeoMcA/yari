@@ -31,6 +31,8 @@ import buildOptions from "./build-options.js";
 import LANGUAGES_RAW from "../libs/languages/index.js";
 import { safeDecodeURIComponent } from "../kumascript/src/api/util.js";
 import { wrapTables } from "./wrap-tables.js";
+import { BlogPost } from "../libs/types/blog.js";
+import { addBlogMetadata } from "./blog.js";
 export { default as SearchIndex } from "./search-index.js";
 export { gather as gatherGitHistory } from "./git-history.js";
 export { buildSPAs } from "./spas.js";
@@ -277,7 +279,7 @@ function getAdjacentImages(documentDirectory) {
 }
 
 export interface BuiltDocument {
-  doc: Doc;
+  doc: Doc | BlogPost;
   liveSamples: any;
   fileAttachments: any;
   source?: {
@@ -316,7 +318,8 @@ export async function buildDocument(
     isTranslated: document.isTranslated,
     isActive: document.isActive,
     flaws: {},
-  } as Partial<Doc>;
+    ...addBlogMetadata(document),
+  } as Partial<Doc | BlogPost>;
 
   interface LiveSample {
     id: string;

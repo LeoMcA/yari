@@ -139,6 +139,7 @@ export interface DocMetadata {
   source: Source;
   contributors: string[];
   isTranslated: boolean;
+  isBlog: boolean;
   isActive: boolean;
   hasMathML?: boolean;
   isMarkdown: boolean;

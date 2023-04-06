@@ -27,6 +27,8 @@ import {
   OFFLINE_CONTENT,
   CONTENT_ROOT,
   CONTENT_TRANSLATED_ROOT,
+  CONTENT_BLOG_ROOT,
+  ROOTS,
 } from "../libs/env/index.js";
 
 import documentRouter from "./document.js";
@@ -41,8 +43,11 @@ import { getRoot } from "../content/utils.js";
 // @ts-ignore
 import { renderHTML } from "../ssr/dist/main.js";
 
-async function buildDocumentFromURL(url) {
-  const document = Document.findByURL(url);
+async function buildDocumentFromURL(url: string) {
+  const roots = url.includes("/blog/")
+    ? [CONTENT_BLOG_ROOT]
+    : ROOTS.filter((x) => x !== CONTENT_BLOG_ROOT);
+  const document = Document.findByURL(url, ...roots);
   if (!document) {
     return null;
   }
@@ -256,7 +261,7 @@ app.get("/*", async (req, res, ...args) => {
     }
   }
 
-  if (!req.url.includes("/docs/")) {
+  if (!(req.url.includes("/docs/") || req.url.includes("/blog/"))) {
     // If it's a known SPA, like `/en-US/search` then that should have been
     // matched to its file and not end up here in the catchall handler.
     // Simulate what we do in the Lambda@Edge.

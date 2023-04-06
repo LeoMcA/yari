@@ -12,6 +12,7 @@ export const FIX_FLAWS_VERBOSE: boolean;
 export const ALWAYS_ALLOW_ROBOTS: boolean;
 export const CONTENT_ROOT: string;
 export const CONTENT_TRANSLATED_ROOT: string;
+export const CONTENT_BLOG_ROOT: string;
 export const CONTRIBUTOR_SPOTLIGHT_ROOT: string;
 export const REPOSITORY_URLS: {
   [path: string]: string;

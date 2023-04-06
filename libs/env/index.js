@@ -72,6 +72,8 @@ export const CONTENT_TRANSLATED_ROOT = correctContentPathFromEnv(
   "CONTENT_TRANSLATED_ROOT"
 );
 
+export const CONTENT_BLOG_ROOT = correctContentPathFromEnv("CONTENT_BLOG_ROOT");
+
 export const CONTRIBUTOR_SPOTLIGHT_ROOT = correctContentPathFromEnv(
   "CONTRIBUTOR_SPOTLIGHT_ROOT"
 );
@@ -90,6 +92,10 @@ export const ROOTS = [CONTENT_ROOT];
 if (CONTENT_TRANSLATED_ROOT) {
   ROOTS.push(CONTENT_TRANSLATED_ROOT);
   REPOSITORY_URLS[CONTENT_TRANSLATED_ROOT] = "mdn/translated-content";
+}
+if (CONTENT_BLOG_ROOT) {
+  ROOTS.push(CONTENT_BLOG_ROOT);
+  REPOSITORY_URLS[CONTENT_BLOG_ROOT] = "mdn/mdn-studio";
 }
 
 function correctContentPathFromEnv(envVarName) {

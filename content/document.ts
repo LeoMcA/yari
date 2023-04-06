@@ -10,6 +10,7 @@ import {
   CONTENT_TRANSLATED_ROOT,
   CONTENT_ROOT,
   ROOTS,
+  CONTENT_BLOG_ROOT,
 } from "../libs/env/index.js";
 import {
   ACTIVE_LOCALES,
@@ -35,6 +36,7 @@ import {
 } from "./utils.js";
 import * as Redirect from "./redirect.js";
 import { DocFrontmatter } from "../libs/types/document.js";
+import { BlogFrontmatter } from "../libs/types/blog.js";
 
 export { urlToFolderPath, MEMOIZE_INVALIDATE } from "./utils.js";
 
@@ -264,6 +266,10 @@ export const read = memoize((folderOrFilePath: string, ...roots: string[]) => {
     CONTENT_TRANSLATED_ROOT && filePath.startsWith(CONTENT_TRANSLATED_ROOT)
   );
 
+  const isBlog = Boolean(
+    CONTENT_BLOG_ROOT && filePath.startsWith(CONTENT_BLOG_ROOT)
+  );
+
   const rawContent = fs.readFileSync(filePath, "utf-8");
   if (!rawContent) {
     throw new Error(`${filePath} is an empty file`);
@@ -286,9 +292,9 @@ export const read = memoize((folderOrFilePath: string, ...roots: string[]) => {
     attributes: metadata,
     body: rawBody,
     bodyBegin: frontMatterOffset,
-  } = fm<DocFrontmatter>(rawContent);
+  } = fm<DocFrontmatter | BlogFrontmatter>(rawContent);
 
-  const url = `/${locale}/docs/${metadata.slug}`;
+  const url = `/${locale}/${isBlog ? "blog" : "docs"}/${metadata.slug}`;
 
   const isActive = ACTIVE_LOCALES.has(locale.toLowerCase());
 
@@ -343,6 +349,7 @@ export const read = memoize((folderOrFilePath: string, ...roots: string[]) => {
     rawBody, // HTML or Markdown string without the front-matter
     isMarkdown: filePath.endsWith(MARKDOWN_FILENAME),
     isTranslated,
+    isBlog,
     isActive,
     fileInfo: {
       folder,
@@ -434,7 +441,12 @@ export function findByURL(
 ) {
   const [bareURL, hash = ""] = url.split("#", 2);
   if (!bareURL.toLowerCase().includes("/docs/")) {
-    return;
+    if (
+      args.includes(CONTENT_BLOG_ROOT) &&
+      !bareURL.toLowerCase().includes("/blog/")
+    ) {
+      return;
+    }
   }
   const doc = read(urlToFolderPath(bareURL), ...args);
   if (doc && hash) {
@@ -460,6 +472,9 @@ export async function findAll({
   const roots: string[] = [];
   if (CONTENT_TRANSLATED_ROOT) {
     roots.push(CONTENT_TRANSLATED_ROOT);
+  }
+  if (CONTENT_BLOG_ROOT) {
+    roots.push(CONTENT_BLOG_ROOT);
   }
   roots.push(CONTENT_ROOT);
   for (const root of roots) {
