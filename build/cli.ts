@@ -15,7 +15,7 @@ import {
   CONTENT_TRANSLATED_ROOT,
   BUILD_OUT_ROOT,
 } from "../libs/env/index.js";
-import { DEFAULT_LOCALE, VALID_LOCALES } from "../libs/constants/index.js";
+import { VALID_LOCALES } from "../libs/constants/index.js";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { renderHTML } from "../ssr/dist/main.js";
@@ -29,7 +29,6 @@ import { DocMetadata, Flaws } from "../libs/types/document.js";
 import SearchIndex from "./search-index.js";
 import { makeSitemapXML, makeSitemapIndexXML } from "./sitemaps.js";
 import { humanFileSize } from "./utils.js";
-import { BlogMetadata } from "../libs/types/blog.js";
 
 const { program } = caporal;
 const { prompt } = inquirer;
@@ -133,7 +132,6 @@ async function buildDocuments(
   }
 
   const metadata: GlobalMetadata = {};
-  const blogMetadata: BlogMetadata[] = [];
 
   const documents = await Document.findAll(findAllOptions);
   const progressBar = new cliProgress.SingleBar(
@@ -254,10 +252,6 @@ async function buildDocuments(
       metadata[document.metadata.locale] = [builtMetadata];
     }
 
-    if (builtMetadata.isBlog) {
-      blogMetadata.push(builtMetadata as BlogMetadata);
-    }
-
     if (!options.noProgressbar) {
       progressBar.increment();
     } else if (!quiet) {
@@ -301,13 +295,6 @@ async function buildDocuments(
       JSON.stringify(meta)
     );
   }
-
-  fs.writeFileSync(
-    path.join(BUILD_OUT_ROOT, DEFAULT_LOCALE.toLowerCase(), "blog.json"),
-    JSON.stringify(
-      blogMetadata.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
-    )
-  );
 
   const allBrowserCompat = new Set<string>();
   Object.values(metadata).forEach((localeMeta) =>

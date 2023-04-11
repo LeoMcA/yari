@@ -169,6 +169,33 @@ export interface DocFrontmatter {
   original_slug?: string;
 }
 
+export interface RawDocMetadata<T> {
+  metadata: T & {
+    frontMatterKeys: string[];
+    locale: string;
+    popularity: number;
+    modified: any;
+    hash: any;
+    contributors: any;
+  };
+  url: string;
+}
+
+export type RawDoc<T> = RawDocMetadata<T> & {
+  rawContent: string;
+  rawBody: string;
+  isMarkdown: boolean;
+  isTranslated: boolean;
+  isBlog: boolean;
+  isActive: boolean;
+  fileInfo: {
+    folder: string;
+    path: string;
+    frontMatterOffset: number;
+    root: string;
+  };
+};
+
 export type Section = ProseSection | SpecificationsSection | BCDSection;
 
 export interface ProseSection {

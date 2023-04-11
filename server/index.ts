@@ -42,6 +42,7 @@ import { getRoot } from "../content/utils.js";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { renderHTML } from "../ssr/dist/main.js";
+import { buildBlogHomepageContext } from "../build/blog.js";
 
 async function buildDocumentFromURL(url: string) {
   const roots = url.includes("/blog/")
@@ -232,6 +233,10 @@ app.get("/*/contributors.txt", async (req, res) => {
       builtDocument.source.github_url.replace("/blob/", "/commits/")
     )
   );
+});
+
+app.get("/:locale/blog/index.json", async (_, res) => {
+  res.json(await buildBlogHomepageContext());
 });
 
 app.get("/*", async (req, res, ...args) => {

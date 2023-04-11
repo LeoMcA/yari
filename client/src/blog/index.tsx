@@ -4,7 +4,7 @@ import { MainContentContainer } from "../ui/atoms/page-content";
 import { TopNavigation } from "../ui/organisms/top-navigation";
 import { BlogPost } from "./post";
 import useSWR from "swr";
-import type { BlogMetadata } from "../../../libs/types/blog";
+import type { BlogFrontmatter } from "../../../libs/types/blog";
 
 export function Blog(appProps: HydrationData) {
   return (
@@ -16,11 +16,11 @@ export function Blog(appProps: HydrationData) {
 }
 
 function BlogIndex(appProps: HydrationData) {
-  const { data: posts } = useSWR<BlogMetadata[]>(
-    "/en-US/blog.json",
+  const { data: posts } = useSWR<BlogFrontmatter[]>(
+    "/en-US/blog/index.json",
     async (key) => {
       const res = await fetch(key);
-      return await res.json();
+      return (await res.json()).hyData;
     }
   );
 
@@ -35,7 +35,7 @@ function BlogIndex(appProps: HydrationData) {
           <ul>
             {posts?.map((post) => (
               <li>
-                <a href={post.mdn_url}>{post.title}</a>
+                <a href={"/en-US/blog/" + post.slug}>{post.title}</a>
               </li>
             ))}
           </ul>

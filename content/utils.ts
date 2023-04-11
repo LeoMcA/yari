@@ -42,15 +42,15 @@ function isPromise(p): p is Promise<unknown> {
  * Note: The parameter are turned into a cache key quite naively, so
  * different object key order would lead to new cache entries.
  */
-export function memoize<Args>(
-  fn: (...args: Args[]) => any
-): (...args: (Args | typeof MEMOIZE_INVALIDATE)[]) => any {
+export function memoize<Args, Return>(
+  fn: (...args: Args[]) => Return
+): (...args: (Args | typeof MEMOIZE_INVALIDATE)[]) => Return {
   if (process.env.NODE_ENV !== "production") {
-    return fn as (...args: (Args | typeof MEMOIZE_INVALIDATE)[]) => any;
+    return fn as (...args: (Args | typeof MEMOIZE_INVALIDATE)[]) => Return;
   }
 
   const cache = new LRU({ max: 2000 });
-  return (...args: (Args | typeof MEMOIZE_INVALIDATE)[]) => {
+  return (...args: (Args | typeof MEMOIZE_INVALIDATE)[]): Return => {
     let invalidate = false;
     if (args.includes(MEMOIZE_INVALIDATE)) {
       args.splice(args.indexOf(MEMOIZE_INVALIDATE), 1);
@@ -62,7 +62,7 @@ export function memoize<Args>(
       if (invalidate) {
         cache.delete(key);
       } else {
-        return cache.get(key);
+        return cache.get(key) as Return;
       }
     }
 
@@ -71,7 +71,7 @@ export function memoize<Args>(
       return value.then((actualValue) => {
         cache.set(key, actualValue);
         return actualValue;
-      });
+      }) as Return;
     }
     cache.set(key, value);
     return value;
