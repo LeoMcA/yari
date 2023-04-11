@@ -1,3 +1,7 @@
+export function isDoc(doc: RawDoc<any>): doc is RawDoc<DocFrontmatter> {
+  return !doc.isBlog;
+}
+
 export interface Source {
   folder: string;
   github_url: string;
@@ -165,8 +169,10 @@ export interface DocFrontmatter {
   usernames?: any;
   quote?: any;
   title?: string;
-  slug?: string;
+  slug: string;
   original_slug?: string;
+  tags?: string[];
+  translation_of?: string;
 }
 
 export interface RawDocMetadata<T> {
@@ -194,6 +200,7 @@ export type RawDoc<T> = RawDocMetadata<T> & {
     frontMatterOffset: number;
     root: string;
   };
+  translations?: any;
 };
 
 export type Section = ProseSection | SpecificationsSection | BCDSection;

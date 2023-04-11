@@ -22,7 +22,7 @@ import {
 import { Redirect, Document, buildURL, getRoot } from "../content/index.js";
 import { buildDocument, gatherGitHistory, buildSPAs } from "../build/index.js";
 import { isValidLocale } from "../libs/locale-utils/index.js";
-import type { Doc } from "../libs/types/document.js";
+import { Doc, isDoc } from "../libs/types/document.js";
 import {
   ALWAYS_ALLOW_ROBOTS,
   BUILD_OUT_ROOT,
@@ -807,7 +807,7 @@ program
       // Build up a map of translations by their `translation_of`
       const map = new Map();
       for (const document of documents.iterDocs()) {
-        if (!document.isTranslated) continue;
+        if (!isDoc(document) || !document.isTranslated) continue;
         const { translation_of, locale } = document.metadata;
         if (!map.has(translation_of)) {
           map.set(translation_of, new Map());
