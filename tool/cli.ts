@@ -196,6 +196,12 @@ interface BuildRobotsTxtActionParameters extends ActionParameters {
   logger: Logger;
 }
 
+interface BlogActionParameters extends ActionParameters {
+  options: {
+    json: boolean;
+  };
+}
+
 interface MacrosActionParameters extends ActionParameters {
   args: {
     cmd: string;
@@ -1005,8 +1011,8 @@ if (Mozilla && !Mozilla.dntEnabled()) {
   .command("blog", "Build (SSR) all non-content pages for the blog")
   .option("--json", "Also output JSON to build directory", { default: false })
   .action(
-    tryOrExit(async ({ options }) => {
-      await buildBlogHomepage({ json: options.json });
+    tryOrExit(async ({ options }: BlogActionParameters) => {
+      await buildBlogHomepage(options);
     })
   )
 
