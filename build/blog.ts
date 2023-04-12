@@ -55,10 +55,10 @@ export async function buildBlogHomepageContext(): Promise<
   };
 }
 
-export async function buildBlogHomepage() {
+export async function buildBlogHomepage({ json }: { json: boolean }) {
   const context = await buildBlogHomepageContext();
 
-  const html = renderHTML("/blog/", context);
+  const html = renderHTML("/en-US/blog/", context);
   const outPath = path.join(
     BUILD_OUT_ROOT,
     DEFAULT_LOCALE.toLowerCase(),
@@ -68,6 +68,8 @@ export async function buildBlogHomepage() {
   const filePath = path.join(outPath, "index.html");
   await fs.writeFile(filePath, html);
 
-  const filePathContext = path.join(outPath, "index.json");
-  await fs.writeFile(filePathContext, JSON.stringify(context));
+  if (json) {
+    const filePathContext = path.join(outPath, "index.json");
+    await fs.writeFile(filePathContext, JSON.stringify(context));
+  }
 }

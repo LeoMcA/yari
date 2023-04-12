@@ -41,6 +41,7 @@ import {
   MacroInvocationError,
   MacroRedirectedLinkError,
 } from "../kumascript/src/errors.js";
+import { buildBlogHomepage } from "../build/blog.js";
 
 const { program } = caporal;
 const { prompt } = inquirer;
@@ -998,6 +999,14 @@ if (Mozilla && !Mozilla.dntEnabled()) {
   .action(
     tryOrExit(async ({ options }) => {
       await buildSPAs(options);
+    })
+  )
+
+  .command("blog", "Build (SSR) all non-content pages for the blog")
+  .option("--json", "Also output JSON to build directory", { default: false })
+  .action(
+    tryOrExit(async ({ options }) => {
+      await buildBlogHomepage({ json: options.json });
     })
   )
 
