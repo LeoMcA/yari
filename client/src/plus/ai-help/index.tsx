@@ -126,7 +126,13 @@ export function AIHelpInner() {
     } remaining today)`;
   }
 
-  const { autoScroll, setAutoScroll } = useAutoScroll(messages);
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const { autoScroll, setAutoScroll } = useAutoScroll(
+    bodyRef,
+    footerRef,
+    messages
+  );
 
   useEffect(() => {
     // Focus input:
@@ -147,7 +153,7 @@ export function AIHelpInner() {
         .join(" ")}
     >
       {hasConversation && (
-        <div className="ai-help-body">
+        <div className="ai-help-body" ref={bodyRef}>
           <ul className="ai-help-messages">
             {messages.map((message, index) => (
               <li
@@ -241,7 +247,7 @@ export function AIHelpInner() {
           <p>An error occurred. Please try again.</p>
         </NoteCard>
       )}
-      <div className="ai-help-footer">
+      <div className="ai-help-footer" ref={footerRef}>
         {(isLoading || isResponding) && (
           <div className="ai-help-footer-actions">
             <Button
@@ -346,18 +352,18 @@ export function RoleIcon({ role }: { role: "user" | "assistant" }) {
   }
 }
 
-function useAutoScroll(dependency) {
+function useAutoScroll(
+  bodyRef: React.RefObject<HTMLElement>,
+  footerRef: React.RefObject<HTMLElement>,
+  dependency: any
+) {
   const [autoScroll, setAutoScroll] = useState(true);
-  const bodyRef = useRef<HTMLElement | null>();
-  const footerRef = useRef<HTMLElement | null>();
   const lastScrollY = useRef(0);
   const lastHeight = useRef(0);
 
   useEffect(() => {
-    const body = (bodyRef.current ??=
-      document.querySelector<HTMLElement>(".ai-help-body"));
-    const footer = (footerRef.current ??=
-      document.querySelector<HTMLElement>(".ai-help-footer"));
+    const body = bodyRef.current;
+    const footer = footerRef.current;
 
     if (!body || !footer) {
       return;
@@ -402,7 +408,7 @@ function useAutoScroll(dependency) {
     window.addEventListener("scroll", scrollListener);
 
     return () => window.removeEventListener("scroll", scrollListener);
-  }, [autoScroll, dependency]);
+  }, [autoScroll, bodyRef, footerRef, dependency]);
 
   return {
     autoScroll,
