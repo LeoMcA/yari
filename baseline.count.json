@@ -1,0 +1,181 @@
+{
+  "multiple_keys": {
+    "all": 89,
+    "landing-page": 1,
+    "guide": 12,
+    "webassembly-interface": 1,
+    "css-pseudo-element": 1,
+    "css-module": 1,
+    "css-type": 6,
+    "css-function": 1,
+    "web-api-overview": 46,
+    "web-api-interface": 1,
+    "webassembly-instruction": 1,
+    "html-attribute": 14,
+    "web-api-instance-method": 2,
+    "javascript-language-feature": 1,
+    "webextension-api-type": 1
+  },
+  "previously_filtered": {
+    "high": {
+      "all": 12,
+      "css-pseudo-class": 1,
+      "web-api-interface": 1,
+      "web-api-instance-method": 3,
+      "web-api-event": 1,
+      "web-api-instance-property": 5,
+      "web-api-constructor": 1
+    },
+    "low": {
+      "all": 7,
+      "web-api-interface": 1,
+      "web-api-instance-method": 4,
+      "web-api-constructor": 1,
+      "web-api-instance-property": 1
+    },
+    "not": {
+      "all": 3,
+      "web-api-instance-property": 1,
+      "web-api-instance-method": 2
+    }
+  },
+  "feature_high": {
+    "high": {
+      "all": 1046,
+      "guide": 5,
+      "css-at-rule": 1,
+      "css-pseudo-class": 9,
+      "css-pseudo-element": 1,
+      "css-property": 45,
+      "css-shorthand-property": 15,
+      "css-function": 20,
+      "css-type": 2,
+      "learn-module-chapter": 1,
+      "web-api-interface": 106,
+      "web-api-overview": 6,
+      "html-attribute": 2,
+      "html-element": 51,
+      "http-method": 1,
+      "http-header": 1,
+      "css-at-rule-descriptor": 2,
+      "css-media-feature": 1,
+      "web-api-instance-method": 153,
+      "web-api-instance-property": 359,
+      "web-api-constructor": 43,
+      "web-api-event": 75,
+      "html-attribute-value": 2,
+      "javascript-language-feature": 4,
+      "javascript-class": 16,
+      "javascript-statement": 4,
+      "javascript-operator": 2,
+      "javascript-constructor": 15,
+      "javascript-instance-method": 83,
+      "javascript-static-method": 13,
+      "javascript-instance-data-property": 1,
+      "javascript-instance-accessor-property": 6,
+      "javascript-static-data-property": 1
+    },
+    "low": {
+      "all": 8,
+      "css-property": 2,
+      "html-attribute": 1,
+      "web-api-instance-property": 3,
+      "web-api-instance-method": 1,
+      "web-api-static-method": 1
+    },
+    "not": {
+      "all": 21,
+      "web-api-interface": 1,
+      "web-api-instance-method": 6,
+      "web-api-instance-property": 13,
+      "web-api-constructor": 1
+    }
+  },
+  "feature_low": {
+    "high": {
+      "all": 42,
+      "css-property": 6,
+      "css-shorthand-property": 1,
+      "css-type": 1,
+      "web-api-interface": 5,
+      "css-function": 10,
+      "web-api-constructor": 4,
+      "web-api-instance-property": 7,
+      "web-api-instance-method": 7,
+      "web-api-event": 1
+    },
+    "low": {
+      "all": 451,
+      "css-at-rule": 6,
+      "css-pseudo-class": 9,
+      "css-property": 33,
+      "css-function": 23,
+      "css-type": 1,
+      "css-shorthand-property": 4,
+      "css-module": 1,
+      "css-selector": 1,
+      "web-api-overview": 5,
+      "web-api-interface": 39,
+      "web-api-global-function": 1,
+      "html-attribute": 3,
+      "html-element": 2,
+      "http-header": 5,
+      "css-at-rule-descriptor": 14,
+      "guide": 3,
+      "web-api-static-method": 4,
+      "web-api-instance-method": 92,
+      "web-api-event": 14,
+      "web-api-constructor": 9,
+      "web-api-instance-property": 139,
+      "html-attribute-value": 2,
+      "javascript-instance-accessor-property": 5,
+      "javascript-instance-method": 28,
+      "javascript-static-method": 5,
+      "javascript-class": 2,
+      "javascript-constructor": 1
+    },
+    "not": {
+      "all": 3,
+      "css-at-rule-descriptor": 2,
+      "web-api-instance-property": 1
+    }
+  },
+  "feature_not": {
+    "high": {
+      "all": 13,
+      "css-property": 6,
+      "web-api-interface": 1,
+      "web-api-instance-property": 5,
+      "web-api-constructor": 1
+    },
+    "low": {
+      "all": 10,
+      "web-api-interface": 2,
+      "web-api-instance-method": 3,
+      "web-api-instance-property": 5
+    },
+    "not": {
+      "all": 810,
+      "guide": 2,
+      "css-property": 29,
+      "css-at-rule": 3,
+      "css-pseudo-class": 8,
+      "css-pseudo-element": 9,
+      "css-function": 8,
+      "css-shorthand-property": 4,
+      "css-type": 1,
+      "web-api-interface": 120,
+      "web-api-overview": 15,
+      "html-attribute": 2,
+      "html-element": 1,
+      "web-api-constructor": 48,
+      "web-api-instance-property": 305,
+      "web-api-instance-method": 182,
+      "web-api-static-method": 11,
+      "web-api-event": 53,
+      "web-api-static-property": 3,
+      "http-csp-directive": 2,
+      "http-permissions-policy-directive": 4
+    }
+  }
+}
