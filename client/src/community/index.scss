@@ -1,8 +1,82 @@
+.light {
+  --color-1: #fff;
+  --color-2: #000;
+  --color-3: #696969;
+  --button-color-1: #000;
+  --button-color-2: #fff;
+  --people: url("../assets/community/people.svg");
+  --color-4: #fff;
+  --color-5: #000;
+  --shadow-1: 4px -2px 1rem 0 rgba(179, 179, 179, 0.2),
+    4px -4px 1rem 0 rgba(179, 179, 179, 0.15);
+  --color-6: #e1f5e5;
+  --color-7: #007936;
+  --color-8: #f2f2f5;
+  --color-9: #343434;
+  --color-10: #000;
+  --button-color-3: #fff;
+  --color-11: #fff;
+  --lines: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><ellipse cx="100%" cy="50%" rx="100%" ry="50%" fill="none" stroke="white" stroke-width="4px"/></svg>'),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><ellipse cx="100%" cy="50%" rx="50%" ry="25%" fill="none" stroke="white" stroke-width="4px"/></svg>');
+  --quote-start: url("../assets/community/quote-start.svg");
+  --quote-end: url("../assets/community/quote-end.svg");
+  --video-bg: url("../assets/community/video-bg.svg");
+  --color-12: #e1f5e5;
+  --color-13: #e2e2e2;
+  --color-14: #fff;
+  --color-15: #000;
+  --color-16: #e2e2e2;
+  --color-17: #000;
+  --color-18: #f9f9fb;
+  --color-19: #fff;
+  --color-20: #dff7e3;
+  --color-21: #007936;
+  --discord: url("../assets/community/discord.svg");
+  --community-calls: url("../assets/community/community-calls.svg");
+}
+
+.dark {
+  --color-1: #101010;
+  --color-2: #fff;
+  --color-3: #b3b3b3;
+  --button-color-1: #fff;
+  --button-color-2: #000;
+  --people: url("../assets/community/people-dark.svg");
+  --color-4: #000;
+  --color-5: #fff;
+  --shadow-1: 4px -2px 15px 0 rgba(38, 38, 38, 0.2),
+    4px -4px 15px 0 rgba(38, 38, 38, 0.15);
+  --color-6: #394035;
+  --color-7: #8ff295;
+  --color-8: #1b1b1b;
+  --color-9: #cdcdcd;
+  --color-10: #fff;
+  --button-color-3: none;
+  --color-11: #1b1b1b;
+  --lines: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><ellipse cx="100%" cy="50%" rx="100%" ry="50%" fill="none" stroke="%234E4E4E" stroke-width="4px"/></svg>'),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><ellipse cx="100%" cy="50%" rx="50%" ry="25%" fill="none" stroke="%234E4E4E" stroke-width="4px"/></svg>');
+  --quote-start: url("../assets/community/quote-start-dark.svg");
+  --quote-end: url("../assets/community/quote-end-dark.svg");
+  --video-bg: url("../assets/community/video-bg-dark.svg");
+  --color-12: #354039;
+  --color-13: #343434;
+  --color-14: #101010;
+  --color-15: #cdcdcd;
+  --color-16: #1b1b1b;
+  --color-17: #fff;
+  --color-18: #1b1b1b;
+  --color-19: #000;
+  --color-20: #354039;
+  --color-21: #8ff295;
+  --discord: url("../assets/community/discord-dark.svg");
+  --community-calls: url("../assets/community/community-calls-dark.svg");
+}
+
 main.community-container {
   --stats-height: 92px; // TODO
-  background: #f2f2f5;
-  color: var(--Neutral-neutral-80, #343434);
-  letter-spacing: -0.03125rem;
+  background: var(--color-8);
+  color: var(--color-9);
+  letter-spacing: var(--heading-letter-spacing);
 
   h2,
   h3,
@@ -21,7 +95,7 @@ main.community-container {
 
   h2,
   h3 {
-    color: var(--Basic-black, #000);
+    color: var(--color-10);
 
     a {
       text-decoration: none;
@@ -52,26 +126,26 @@ main.community-container {
       to top,
       transparent 0%,
       transparent calc(var(--stats-height) / 2),
-      #fff calc(var(--stats-height) / 2),
-      #fff 100%
+      var(--color-1) calc(var(--stats-height) / 2),
+      var(--color-1) 100%
     );
     padding-top: 7rem;
 
     section {
-      background-image: url("../assets/community/people.svg");
+      background-image: var(--people);
       background-position: bottom calc(var(--stats-height) - 1rem) right;
       background-repeat: no-repeat;
     }
 
     h1 {
-      color: var(--Basic-black, #000);
+      color: var(--color-2);
       font-size: 3rem;
       font-weight: 700;
       margin-bottom: 1rem;
     }
 
     p {
-      color: var(--Neutral-neutral-60, #696969);
+      color: var(--color-3);
       margin-bottom: 2rem;
     }
 
@@ -80,9 +154,9 @@ main.community-container {
       gap: 1.3125rem;
 
       a {
-        border: 1px solid #000;
+        border: 1px solid var(--button-color-1);
         border-radius: 0.5rem;
-        color: var(--Basic-black, #000);
+        color: var(--button-color-1);
         display: block;
         font-size: 1.25rem;
         font-weight: 500;
@@ -92,19 +166,17 @@ main.community-container {
       }
 
       li:first-child a {
-        background: var(--Basic-black, #000);
-        color: var(--Basic-white, #fff);
+        background: var(--button-color-1);
+        color: var(--button-color-2);
       }
     }
 
     ul:last-of-type {
-      background: var(--Basic-white, #fff);
+      background: var(--color-4);
       border-radius: 0.5rem;
-      box-shadow:
-        4px -2px 1rem 0 rgba(179, 179, 179, 0.2),
-        4px -4px 1rem 0 rgba(179, 179, 179, 0.15);
+      box-shadow: var(--shadow-1);
 
-      color: var(--Basic-black, #000);
+      color: var(--color-5);
       display: flex;
       justify-content: space-around;
       margin-top: 10rem;
@@ -112,10 +184,10 @@ main.community-container {
 
       li strong {
         align-items: center;
-        background: #e1f5e5;
+        background: var(--color-6);
         border-radius: 50%;
 
-        color: var(--Green-green-60, #007936);
+        color: var(--color-7);
         display: inline-flex;
         height: 3.75rem;
         justify-content: center;
@@ -160,10 +232,10 @@ main.community-container {
         margin-top: 2rem;
 
         a {
-          background: var(--Basic-white, #fff);
-          border: 1px solid #000;
+          background: var(--button-color-3);
+          border: 1px solid var(--button-color-1);
           border-radius: 0.5rem;
-          color: var(--Basic-black, #000);
+          color: var(--button-color-1);
           display: block;
           font-size: 1.25rem;
           font-weight: 500;
@@ -173,8 +245,8 @@ main.community-container {
         }
 
         li:first-child a {
-          background: #000;
-          color: #fff;
+          background: var(--button-color-1);
+          color: var(--button-color-2);
         }
       }
 
@@ -183,8 +255,7 @@ main.community-container {
         // TODO simplify/document/@supports
         --img-size: 3.75rem;
         --element-width: 10rem;
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><ellipse cx="100%" cy="50%" rx="100%" ry="50%" fill="none" stroke="white" stroke-width="4px"/></svg>'),
-          url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><ellipse cx="100%" cy="50%" rx="50%" ry="25%" fill="none" stroke="white" stroke-width="4px"/></svg>');
+        background-image: var(--lines);
         grid-column: 1;
         grid-row: 1/5;
         height: var(--contributors-height);
@@ -193,7 +264,7 @@ main.community-container {
 
         li {
           align-items: center;
-          color: var(--Basic-black, #000);
+          color: var(--color-2);
           display: flex;
           flex-direction: column;
           height: var(--img-size);
@@ -242,7 +313,7 @@ main.community-container {
         }
 
         img {
-          border: 6px #fff solid;
+          border: 6px var(--color-11) solid;
           border-radius: 50%;
           height: var(--img-size);
           width: var(--img-size);
@@ -279,11 +350,9 @@ main.community-container {
       }
 
       li {
-        background: #fff;
+        background: var(--color-4);
         border-radius: 0.5rem;
-        box-shadow:
-          4px 4px 15px 0 rgba(179, 179, 179, 0.2),
-          4px -4px 15px 0 rgba(179, 179, 179, 0.15);
+        box-shadow: var(--shadow-1);
         display: block;
         flex-shrink: 0;
         padding: 2.35rem 2.9rem 1.5rem;
@@ -305,13 +374,13 @@ main.community-container {
         position: relative;
 
         p {
-          color: var(--Neutral-neutral-80, #343434);
+          color: var(--color-9);
           font-style: italic;
         }
 
         &::before,
         &::after {
-          background-image: url("../assets/community/quote-start.svg");
+          background-image: var(--quote-start);
           background-position: right;
           background-repeat: no-repeat;
           background-size: contain;
@@ -325,7 +394,7 @@ main.community-container {
         }
 
         &::after {
-          background-image: url("../assets/community/quote-end.svg");
+          background-image: var(--quote-end);
           background-position: left;
           bottom: -0.69em;
           left: auto;
@@ -359,8 +428,7 @@ main.community-container {
 
         a {
           background-image: url("../assets/community/youtube-play.svg"),
-            url("../assets/community/video-thumbnail.jpg"),
-            url("../assets/community/video-bg.svg");
+            url("../assets/community/video-thumbnail.jpg"), var(--video-bg);
           background-position:
             43% 50%,
             36% 50%,
@@ -395,12 +463,10 @@ main.community-container {
 
       li {
         align-items: center;
-        background: #fff;
-        border: 1px solid var(--Neutral-neutral-10, #e2e2e2);
+        background: var(--color-4);
+        border: 1px solid var(--color-13);
         border-radius: 0.5rem;
-        box-shadow:
-          4px 4px 15px 0 rgba(179, 179, 179, 0.2),
-          0 4px 15px 0 rgba(179, 179, 179, 0.2);
+        box-shadow: var(--shadow-1);
         display: flex;
         flex: 1;
         flex-direction: column;
@@ -411,7 +477,7 @@ main.community-container {
 
         h3 {
           align-self: stretch;
-          background: #e1f5e5;
+          background: var(--color-12);
           border-radius: 0.5rem 0.5rem 0 0;
           font-size: 1.25rem;
           font-weight: 500;
@@ -421,9 +487,9 @@ main.community-container {
         }
 
         a {
-          background: var(--Basic-black, #000);
+          background: var(--button-color-1);
           border-radius: 0.5rem;
-          color: var(--Basic-white, #fff);
+          color: var(--Basic-white, var(--button-color-2));
           font-size: 1.25rem;
           font-weight: 500;
           line-height: 120%; /* 1.5rem */
@@ -435,8 +501,8 @@ main.community-container {
 
     &[aria-labelledby="help_us_fix_open_issues"],
     &[aria-labelledby="help_us_fix_open_issues"] ~ section {
-      background: #fff;
-      color: var(--Basic-black, #000);
+      background: var(--color-14);
+      color: var(--color-15);
       display: block;
       // reset layout/colors for the bottom section
       max-width: 100%;
@@ -460,10 +526,12 @@ main.community-container {
       }
 
       table {
-        border: 1px solid var(--Neutral-neutral-10, #e2e2e2);
+        background: var(--color-19);
+        border: 1px solid var(--color-16);
         border-collapse: separate;
         border-radius: 0.5rem;
         border-spacing: 0;
+        color: var(--color-17);
       }
 
       th,
@@ -473,12 +541,13 @@ main.community-container {
       }
 
       th {
+        background: none;
         font-size: 1.25rem;
         font-weight: 500;
       }
 
       tr:nth-child(odd) {
-        background: var(--Neutral-light-neutral-light-70, #f9f9fb);
+        background: var(--color-18);
       }
 
       td > div {
@@ -489,9 +558,9 @@ main.community-container {
       }
 
       .label {
-        background: #dff7e3;
+        background: var(--color-20);
         border-radius: 0.25rem;
-        color: var(--Green-green-60, #007936);
+        color: var(--color-21);
         font-weight: 500;
         padding: 0.5rem 1rem;
       }
@@ -506,11 +575,9 @@ main.community-container {
 
       li {
         align-items: flex-start;
-        border: 1px solid var(--Neutral-neutral-10, #e2e2e2);
+        border: 1px solid var(--color-16);
         border-radius: 0.5rem;
-        box-shadow:
-          4px -2px 1rem 0 rgba(179, 179, 179, 0.2),
-          4px -4px 1rem 0 rgba(179, 179, 179, 0.15);
+        box-shadow: var(--shadow-1);
         display: flex;
         flex: 1;
         flex-direction: column;
@@ -521,7 +588,7 @@ main.community-container {
         position: relative;
 
         &::before {
-          background-image: url("../assets/community/discord.svg");
+          background-image: var(--discord);
           background-repeat: no-repeat;
           background-size: contain;
           content: "";
@@ -532,7 +599,7 @@ main.community-container {
         }
 
         &:last-of-type::before {
-          background-image: url("../assets/community/community-calls.svg");
+          background-image: var(--community-calls);
         }
 
         h3 {
@@ -541,9 +608,9 @@ main.community-container {
         }
 
         a {
-          background: var(--Basic-black, #000);
+          background: var(--button-color-1);
           border-radius: 0.5rem;
-          color: var(--Basic-white, #fff);
+          color: var(--button-color-2);
           font-size: 1.25rem;
           font-weight: 500;
           line-height: 120%; /* 1.5rem */
