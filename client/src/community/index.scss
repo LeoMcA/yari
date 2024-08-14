@@ -79,9 +79,14 @@
 
 main.community-container {
   --stats-height: 92px; // TODO
+  --section-gap: 10rem;
   background: var(--community-bg-secondary);
   color: var(--community-text-secondary);
   letter-spacing: var(--heading-letter-spacing);
+
+  @media (max-width: $screen-md) {
+    --section-gap: 5rem;
+  }
 
   h2,
   h3,
@@ -209,7 +214,7 @@ main.community-container {
       display: flex;
       gap: 1.38rem;
       justify-content: space-around;
-      margin-top: 10rem;
+      margin-top: var(--section-gap);
       padding: 1rem;
 
       @media (max-width: $screen-xl) {
@@ -227,6 +232,7 @@ main.community-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        overflow-wrap: anywhere;
 
         @media (max-width: $screen-md) {
           align-items: center;
@@ -245,6 +251,7 @@ main.community-container {
           justify-content: center;
           letter-spacing: -0.03125rem;
           width: 3.75rem;
+          margin: 0 2rem;
         }
       }
     }
@@ -266,6 +273,7 @@ main.community-container {
 
     @media (max-width: $screen-md) {
       display: block;
+      --contributors-height: 0rem;
     }
 
     > * {
@@ -274,7 +282,7 @@ main.community-container {
 
     &[aria-labelledby="meet_our_contributors"] {
       grid-template-rows: auto auto auto 50rem;
-      margin-top: 10rem;
+      margin-top: var(--section-gap);
 
       @media (max-width: $screen-md) {
         margin-top: 5rem;
@@ -290,10 +298,16 @@ main.community-container {
       }
 
       ul:first-of-type {
+        // contributor buttons
+
         display: flex;
         gap: 2.12rem;
-        // contributor buttons
         margin-top: 2rem;
+        flex-wrap: wrap;
+
+        @media (max-width: $screen-md) {
+          justify-content: center;
+        }
 
         a {
           background: var(--community-button-bg-alt);
@@ -317,6 +331,7 @@ main.community-container {
       ul:last-of-type {
         // contributor semi-circle
         // TODO simplify/document/@supports
+
         --img-size: 3.75rem;
         --element-width: 10rem;
         background-image: var(--community-circle-bg);
@@ -325,6 +340,11 @@ main.community-container {
         height: var(--contributors-height);
         margin: calc(var(--img-size) / 2) calc(var(--element-width) / 2);
         position: relative;
+        min-width: 0;
+
+        @media (max-width: $screen-xl) {
+          display: none;
+        }
 
         li {
           align-items: center;
@@ -393,7 +413,7 @@ main.community-container {
     }
 
     &[aria-labelledby="contributor_spotlight"] {
-      margin-top: calc(10rem - var(--contributors-height));
+      margin-top: calc(var(--section-gap) - var(--contributors-height));
 
       h2,
       .section-content {
@@ -411,6 +431,12 @@ main.community-container {
         margin-left: -1rem;
         overflow-x: auto;
         padding: 2.41rem 1rem;
+
+        @media (max-width: $screen-md) {
+          margin-left: calc(var(--gutter) * -1);
+          margin-right: calc(var(--gutter) * -1);
+          // padding: 0 var(--gutter);
+        }
       }
 
       li {
@@ -470,7 +496,7 @@ main.community-container {
 
     &[aria-labelledby="learn_how_to_get_started"] {
       grid-template-rows: 1fr auto auto auto 1fr;
-      margin-top: 10rem;
+      margin-top: var(--section-gap);
 
       &::before {
         content: "";
@@ -488,7 +514,13 @@ main.community-container {
 
       p:last-child {
         // video link
+
         display: contents;
+
+        @media (max-width: $screen-md) {
+          display: flex;
+          justify-content: center;
+        }
 
         a {
           background-image: url("../assets/community/youtube-play.svg"),
@@ -504,26 +536,31 @@ main.community-container {
           display: block;
           grid-column: 1;
           grid-row: 1/6;
-          height: 25rem;
+          height: min(25rem, 100vw);
           overflow: hidden;
           text-indent: -100rem;
-          width: 28rem;
+          max-width: 28rem;
+
+          @media (max-width: $screen-md) {
+            width: 28rem;
+          }
         }
       }
     }
 
     &[aria-labelledby="join_us_in_shaping_a_better_web"] {
       display: block;
-      margin-top: 10rem;
+      margin-top: var(--section-gap);
 
       p {
         margin-bottom: 2.86rem;
       }
 
       ul {
-        display: flex;
+        display: grid;
         gap: 4.88rem;
         margin-bottom: 5.13rem;
+        grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
       }
 
       li {
@@ -566,12 +603,13 @@ main.community-container {
 
     &[aria-labelledby="help_us_fix_open_issues"],
     &[aria-labelledby="help_us_fix_open_issues"] ~ section {
+      // reset layout/colors for the bottom section
+
       background: var(--community-bg-primary);
       color: var(--community-text-primary-alt);
       display: block;
-      // reset layout/colors for the bottom section
       max-width: 100%;
-      padding: 5rem 0;
+      padding: calc(var(--section-gap) / 2) 0;
 
       h2,
       .section-content,
@@ -603,12 +641,22 @@ main.community-container {
       td {
         border: none;
         padding: 1.5rem;
+
+        @media (max-width: $screen-md) {
+          &:last-of-type {
+            display: none;
+          }
+        }
       }
 
       th {
         background: none;
         font-size: 1.25rem;
         font-weight: 500;
+
+        @media (max-width: $screen-md) {
+          display: none;
+        }
       }
 
       tr:nth-child(odd) {
@@ -636,6 +684,7 @@ main.community-container {
         display: flex;
         gap: 1.5rem;
         margin-bottom: 1.5rem;
+        flex-wrap: wrap;
       }
 
       li {
@@ -651,6 +700,11 @@ main.community-container {
         padding: 2rem;
         padding-left: 8.5rem;
         position: relative;
+        min-width: min(24rem, 100%);
+
+        @media (max-width: $screen-md) {
+          padding-left: 5.5rem;
+        }
 
         &::before {
           background-image: var(--community-discord-bg);
@@ -661,6 +715,10 @@ main.community-container {
           left: 2rem;
           position: absolute;
           width: 5rem;
+
+          @media (max-width: $screen-md) {
+            width: 2rem;
+          }
         }
 
         &:last-of-type::before {
@@ -670,6 +728,10 @@ main.community-container {
         h3 {
           font-size: 1.75rem;
           font-weight: 600;
+
+          @media (max-width: $screen-md) {
+            font-size: 1.25rem;
+          }
         }
 
         a {
@@ -681,6 +743,7 @@ main.community-container {
           line-height: 120%; /* 1.5rem */
           padding: 0.62rem;
           text-decoration: none;
+          text-align: center;
         }
       }
     }
