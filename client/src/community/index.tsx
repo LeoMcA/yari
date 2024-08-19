@@ -1,16 +1,23 @@
 import "./index.scss";
-import { CurriculumDoc, CurriculumData } from "../../../libs/types/curriculum";
 import { HydrationData } from "../../../libs/types/hydration";
-import { useCurriculumDoc } from "../curriculum/utils";
-import { RenderCurriculumBody } from "../curriculum/body";
 import { useMemo } from "react";
 import useSWRImmutable from "swr/immutable";
+import { Section } from "../../../libs/types/document";
+import useSWR from "swr";
+import { HTTPError } from "../document";
+import { WRITER_MODE } from "../env";
+import { Prose } from "../document/ingredients/prose";
 
-export function Community(appProps: HydrationData<any, CurriculumDoc>) {
-  const doc = useCurriculumDoc(appProps as CurriculumData);
+interface CommunityDoc {
+  title: string;
+  body: Section[];
+}
+
+export function Community(appProps: HydrationData<any, CommunityDoc>) {
+  const doc = useCommunityDoc(appProps);
   return (
     <main className="community-container">
-      <RenderCurriculumBody
+      <RenderCommunityBody
         doc={doc}
         renderer={(section, i) => {
           if (i === 0) {
@@ -29,6 +36,56 @@ export function Community(appProps: HydrationData<any, CurriculumDoc>) {
       />
     </main>
   );
+}
+
+function useCommunityDoc(
+  appProps?: HydrationData<any, CommunityDoc>
+): CommunityDoc | undefined {
+  const { data } = useSWR<CommunityDoc>(
+    "index.json",
+    async () => {
+      const url = new URL(
+        `${window.location.pathname.replace(/\/$/, "")}/index.json`,
+        window.location.origin
+      ).toString();
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        switch (response.status) {
+          case 404:
+            throw new HTTPError(response.status, url, "Page not found");
+        }
+
+        const text = await response.text();
+        throw new HTTPError(response.status, url, text);
+      }
+
+      return (await response.json())?.doc;
+    },
+    {
+      fallbackData: appProps?.doc,
+      revalidateOnFocus: WRITER_MODE,
+      revalidateOnMount: true,
+    }
+  );
+  const doc: CommunityDoc | undefined = data || appProps?.doc || undefined;
+  return doc;
+}
+
+function RenderCommunityBody({
+  doc,
+  renderer = () => null,
+}: {
+  doc?: CommunityDoc;
+  renderer?: (section: Section, i: number) => null | JSX.Element;
+}) {
+  return doc?.body.map((section, i) => {
+    return (
+      renderer(section, i) || (
+        <Prose key={section.value.id} section={section.value} />
+      )
+    );
+  });
 }
 
 function Header({ section, h1 }: { section: any; h1?: string }) {
@@ -71,18 +128,22 @@ function Issues({ section }: { section: any }) {
       <div className="issues-table">
         <table>
           <thead>
-            <th>Title</th>
-            <th>Repository</th>
+            <tr>
+              <th>Title</th>
+              <th>Repository</th>
+            </tr>
           </thead>
           <tbody>
             {data?.items.map(({ html_url, title, labels, repository_url }) => (
-              <tr>
+              <tr key={html_url}>
                 <td>
                   <div>
                     <a href={html_url}>{title}</a>
                     {labels.map(({ name }) =>
                       LABELS.includes(name) ? (
-                        <span className="label">{name}</span>
+                        <span key={name} className="label">
+                          {name}
+                        </span>
                       ) : null
                     )}
                   </div>

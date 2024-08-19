@@ -78,14 +78,15 @@
 }
 
 main.community-container {
-  --stats-height: 92px; // TODO
-  --section-gap: 10rem;
+  --community-stats-height: 5.75rem;
+  --community-section-gap: 10rem;
+
   background: var(--community-bg-secondary);
   color: var(--community-text-secondary);
   letter-spacing: var(--heading-letter-spacing);
 
   @media (max-width: $screen-md) {
-    --section-gap: 5rem;
+    --community-section-gap: 5rem;
   }
 
   h2,
@@ -139,8 +140,8 @@ main.community-container {
     background: linear-gradient(
       to top,
       transparent 0%,
-      transparent calc(var(--stats-height) / 2),
-      var(--community-bg-primary) calc(var(--stats-height) / 2),
+      transparent calc(var(--community-stats-height) / 2),
+      var(--community-bg-primary) calc(var(--community-stats-height) / 2),
       var(--community-bg-primary) 100%
     );
     padding-top: 7rem;
@@ -152,7 +153,8 @@ main.community-container {
 
     section {
       background-image: var(--community-header-bg);
-      background-position: bottom calc(var(--stats-height) - 1rem) right;
+      background-position: bottom calc(var(--community-stats-height) - 1rem)
+        right;
       background-repeat: no-repeat;
 
       @media (max-width: $screen-md) {
@@ -214,7 +216,7 @@ main.community-container {
       display: flex;
       gap: 1.38rem;
       justify-content: space-around;
-      margin-top: var(--section-gap);
+      margin-top: var(--community-section-gap);
       padding: 1rem;
 
       @media (max-width: $screen-xl) {
@@ -250,8 +252,8 @@ main.community-container {
           height: 3.75rem;
           justify-content: center;
           letter-spacing: -0.03125rem;
-          width: 3.75rem;
           margin: 0 2rem;
+          width: 3.75rem;
         }
       }
     }
@@ -266,14 +268,14 @@ main.community-container {
   }
 
   > section {
-    --contributors-height: 50rem;
+    --community-circle-height: 50rem;
     column-gap: 5rem;
     display: grid;
     grid-template-columns: 4fr 6fr;
 
     @media (max-width: $screen-md) {
+      --community-circle-height: 0;
       display: block;
-      --contributors-height: 0rem;
     }
 
     > * {
@@ -281,12 +283,8 @@ main.community-container {
     }
 
     &[aria-labelledby="meet_our_contributors"] {
-      grid-template-rows: auto auto auto 50rem;
-      margin-top: var(--section-gap);
-
-      @media (max-width: $screen-md) {
-        margin-top: 5rem;
-      }
+      grid-template-rows: auto auto auto var(--community-circle-height);
+      margin-top: var(--community-section-gap);
 
       .section-content {
         display: contents;
@@ -301,9 +299,9 @@ main.community-container {
         // contributor buttons
 
         display: flex;
+        flex-wrap: wrap;
         gap: 2.12rem;
         margin-top: 2rem;
-        flex-wrap: wrap;
 
         @media (max-width: $screen-md) {
           justify-content: center;
@@ -329,21 +327,26 @@ main.community-container {
       }
 
       ul:last-of-type {
-        // contributor semi-circle
-        // TODO simplify/document/@supports
+        // contributor list
 
-        --img-size: 3.75rem;
-        --element-width: 10rem;
-        background-image: var(--community-circle-bg);
+        --community-list-img-size: 3.75rem;
+        --community-list-width: 10rem;
+        align-content: start;
+        display: grid;
+        gap: 2rem 1rem;
         grid-column: 1;
         grid-row: 1/5;
-        height: var(--contributors-height);
-        margin: calc(var(--img-size) / 2) calc(var(--element-width) / 2);
-        position: relative;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(var(--community-list-width), 1fr)
+        );
+        justify-items: center;
         min-width: 0;
 
-        @media (max-width: $screen-xl) {
-          display: none;
+        @media (max-width: $screen-md) {
+          display: flex;
+          margin-top: 2rem;
+          overflow-x: auto;
         }
 
         li {
@@ -351,56 +354,16 @@ main.community-container {
           color: var(--community-text-primary);
           display: flex;
           flex-direction: column;
-          height: var(--img-size);
-          offset-distance: calc(var(--angle) * 50% + 25%);
-          offset-path: ellipse(100% 50% at right center);
-          offset-rotate: 0deg;
+          flex-shrink: 0;
           text-align: center;
-          width: var(--element-width);
-
-          &:nth-child(n + 6) {
-            --img-size: 5rem;
-            offset-path: ellipse(50% 25% at right center);
-          }
-
-          &:nth-child(1) {
-            --angle: 0;
-          }
-
-          &:nth-child(2) {
-            --angle: 1/4;
-          }
-
-          &:nth-child(3) {
-            --angle: 2/4;
-          }
-
-          &:nth-child(4) {
-            --angle: 3/4;
-          }
-
-          &:nth-child(5) {
-            --angle: 1;
-          }
-
-          &:nth-child(6) {
-            --angle: 0;
-          }
-
-          &:nth-child(7) {
-            --angle: 1/2;
-          }
-
-          &:nth-child(8) {
-            --angle: 1;
-          }
+          width: var(--community-list-width);
         }
 
         img {
           border: 6px var(--community-circle-img-border) solid;
           border-radius: 50%;
-          height: var(--img-size);
-          width: var(--img-size);
+          height: var(--community-list-img-size);
+          width: var(--community-list-img-size);
         }
 
         a {
@@ -412,8 +375,73 @@ main.community-container {
       }
     }
 
+    @supports (offset-path: ellipse(100% 50% at right center)) {
+      @media (min-width: $screen-xxl) {
+        &[aria-labelledby="meet_our_contributors"] {
+          ul:last-of-type {
+            // contributor semi-circle
+
+            background-image: var(--community-circle-bg);
+            display: block;
+            height: var(--community-circle-height);
+            margin: calc(var(--community-list-img-size) / 2)
+              calc(var(--community-list-width) / 2);
+            position: relative;
+
+            li {
+              height: var(--community-list-img-size);
+              offset-distance: calc(var(--community-circle-angle) * 50% + 25%);
+              // matches first svg defined in --community-circle-bg
+              offset-path: ellipse(100% 50% at right center);
+              offset-rotate: 0deg;
+
+              &:nth-child(n + 6) {
+                --community-list-img-size: 5rem;
+                // matches second svg defined in --community-circle-bg
+                offset-path: ellipse(50% 25% at right center);
+              }
+
+              &:nth-child(1) {
+                --community-circle-angle: 0;
+              }
+
+              &:nth-child(2) {
+                --community-circle-angle: 1/4;
+              }
+
+              &:nth-child(3) {
+                --community-circle-angle: 2/4;
+              }
+
+              &:nth-child(4) {
+                --community-circle-angle: 3/4;
+              }
+
+              &:nth-child(5) {
+                --community-circle-angle: 1;
+              }
+
+              &:nth-child(6) {
+                --community-circle-angle: 0;
+              }
+
+              &:nth-child(7) {
+                --community-circle-angle: 1/2;
+              }
+
+              &:nth-child(8) {
+                --community-circle-angle: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+
     &[aria-labelledby="contributor_spotlight"] {
-      margin-top: calc(var(--section-gap) - var(--contributors-height));
+      margin-top: calc(
+        var(--community-section-gap) - var(--community-circle-height)
+      );
 
       h2,
       .section-content {
@@ -435,7 +463,6 @@ main.community-container {
         @media (max-width: $screen-md) {
           margin-left: calc(var(--gutter) * -1);
           margin-right: calc(var(--gutter) * -1);
-          // padding: 0 var(--gutter);
         }
       }
 
@@ -496,7 +523,7 @@ main.community-container {
 
     &[aria-labelledby="learn_how_to_get_started"] {
       grid-template-rows: 1fr auto auto auto 1fr;
-      margin-top: var(--section-gap);
+      margin-top: var(--community-section-gap);
 
       &::before {
         content: "";
@@ -524,7 +551,7 @@ main.community-container {
 
         a {
           background-image: url("../assets/community/youtube-play.svg"),
-            url("../assets/community/video-thumbnail.jpg"),
+            url("../assets/community/video-thumbnail.png"),
             var(--community-video-bg);
           background-position:
             43% 50%,
@@ -537,9 +564,9 @@ main.community-container {
           grid-column: 1;
           grid-row: 1/6;
           height: min(25rem, 100vw);
+          max-width: 28rem;
           overflow: hidden;
           text-indent: -100rem;
-          max-width: 28rem;
 
           @media (max-width: $screen-md) {
             width: 28rem;
@@ -550,7 +577,7 @@ main.community-container {
 
     &[aria-labelledby="join_us_in_shaping_a_better_web"] {
       display: block;
-      margin-top: var(--section-gap);
+      margin-top: var(--community-section-gap);
 
       p {
         margin-bottom: 2.86rem;
@@ -559,8 +586,8 @@ main.community-container {
       ul {
         display: grid;
         gap: 4.88rem;
-        margin-bottom: 5.13rem;
         grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+        margin-bottom: 5.13rem;
       }
 
       li {
@@ -609,7 +636,7 @@ main.community-container {
       color: var(--community-text-primary-alt);
       display: block;
       max-width: 100%;
-      padding: calc(var(--section-gap) / 2) 0;
+      padding: calc(var(--community-section-gap) / 2) 0;
 
       h2,
       .section-content,
@@ -659,7 +686,7 @@ main.community-container {
         }
       }
 
-      tr:nth-child(odd) {
+      tbody tr:nth-child(odd) {
         background: var(--community-table-row);
       }
 
@@ -682,9 +709,9 @@ main.community-container {
     &[aria-labelledby="join_the_conversation"] {
       ul {
         display: flex;
+        flex-wrap: wrap;
         gap: 1.5rem;
         margin-bottom: 1.5rem;
-        flex-wrap: wrap;
       }
 
       li {
@@ -697,10 +724,10 @@ main.community-container {
         flex-direction: column;
         gap: 1.5rem;
         justify-content: space-between;
+        min-width: min(30rem, 100%);
         padding: 2rem;
         padding-left: 8.5rem;
         position: relative;
-        min-width: min(24rem, 100%);
 
         @media (max-width: $screen-md) {
           padding-left: 5.5rem;
@@ -742,8 +769,8 @@ main.community-container {
           font-weight: 500;
           line-height: 120%; /* 1.5rem */
           padding: 0.62rem;
-          text-decoration: none;
           text-align: center;
+          text-decoration: none;
         }
       }
     }
