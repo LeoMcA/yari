@@ -1,6 +1,27 @@
 import { fileURLToPath } from "node:url";
 import nodeExternals from "webpack-node-externals";
 import webpack from "webpack";
+import crypto from "node:crypto";
+
+class GenerateCSPHash {
+  /**
+   * @param {import("webpack").Compiler} compiler
+   */
+  apply(compiler) {
+    compiler.hooks.compilation.tap("GenerateCSPHash", (compilation) => {
+      compilation.hooks.succeedModule.tap("GenerateCSPHash", (module) => {
+        const fileName = module.resource;
+        // console.log(fileName);
+        if (fileName?.endsWith("?inline")) {
+          const source = module.originalSource().source();
+          const algo = "sha256";
+          const hash = crypto.createHash(algo).update(source).digest("base64");
+          console.log(`CSP hash for ${fileName}: '${algo}-${hash}'`);
+        }
+      });
+    });
+  }
+}
 
 const config = {
   context: fileURLToPath(new URL(".", import.meta.url)),
@@ -24,64 +45,78 @@ const config = {
   module: {
     rules: [
       {
-        resourceQuery: /raw/,
-        type: "asset/source",
-      },
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: [
+        oneOf: [
           {
-            loader: "ts-loader",
-            options: {
-              transpileOnly: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: "@svgr/webpack",
-            options: {
-              prettier: false,
-              svgo: false,
-              svgoConfig: {
-                plugins: [{ removeViewBox: false }],
+            resourceQuery: /inline/,
+            type: "asset/source",
+            rules: [
+              {
+                test: /\.js$/,
+                use: ["terser-loader"],
               },
-              titleProp: true,
-              ref: true,
-            },
+            ],
           },
           {
-            loader: "file-loader",
-            options: {
-              emitFile: false,
-              publicPath: "/",
-              name: "static/media/[name].[hash].[ext]",
-            },
+            rules: [
+              {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: [
+                  {
+                    loader: "ts-loader",
+                    options: {
+                      transpileOnly: true,
+                    },
+                  },
+                ],
+              },
+              {
+                test: /\.svg$/,
+                use: [
+                  {
+                    loader: "@svgr/webpack",
+                    options: {
+                      prettier: false,
+                      svgo: false,
+                      svgoConfig: {
+                        plugins: [{ removeViewBox: false }],
+                      },
+                      titleProp: true,
+                      ref: true,
+                    },
+                  },
+                  {
+                    loader: "file-loader",
+                    options: {
+                      emitFile: false,
+                      publicPath: "/",
+                      name: "static/media/[name].[hash].[ext]",
+                    },
+                  },
+                ],
+                issuer: {
+                  and: [/\.(ts|tsx|js|jsx|md|mdx)$/],
+                },
+              },
+              {
+                test: [/\.avif$/, /\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+                type: "asset",
+                parser: {
+                  dataUrlCondition: {
+                    maxSize: 0,
+                  },
+                },
+                generator: {
+                  emit: false,
+                  publicPath: "/",
+                  filename: "static/media/[name].[hash][ext]",
+                },
+              },
+              { test: /\.(css|scss)$/, loader: "ignore-loader" },
+            ],
           },
         ],
-        issuer: {
-          and: [/\.(ts|tsx|js|jsx|md|mdx)$/],
-        },
       },
-      {
-        test: [/\.avif$/, /\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        type: "asset",
-        parser: {
-          dataUrlCondition: {
-            maxSize: 0,
-          },
-        },
-        generator: {
-          emit: false,
-          publicPath: "/",
-          filename: "static/media/[name].[hash][ext]",
-        },
-      },
-      { test: /\.(css|scss)$/, loader: "ignore-loader" },
     ],
   },
   externals: nodeExternals(),
@@ -94,6 +129,7 @@ const config = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
     }),
+    new GenerateCSPHash(),
   ],
   experiments: {
     outputModule: true,
