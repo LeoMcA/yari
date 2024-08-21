@@ -10,11 +10,11 @@ import {
   ASSET_MANIFEST,
 } from "./include";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+import favicon from "../client/public/favicon-48x48.png?public";
+import appleIcon from "../client/public/apple-touch-icon.png?public";
+import manifest from "../client/public/manifest.json?public";
+import ogImage from "../client/public/mdn-social-share.png?public";
 import printCSS from "./print.css?inline";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import themeJS from "./theme.js?inline";
 
 // When there are multiple options for a given language, this gives the
@@ -156,13 +156,13 @@ export default function render(
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-          <link rel="icon" href="/favicon-48x48.png" />
+          <link rel="icon" href={favicon} />
 
-          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link rel="apple-touch-icon" href={appleIcon} />
 
           <meta name="theme-color" content="#ffffff" />
 
-          <link rel="manifest" href="/manifest.json" />
+          <link rel="manifest" href={manifest} />
 
           <link
             rel="search"
@@ -212,10 +212,7 @@ export default function render(
               "The MDN Web Docs site provides information about Open Web technologies including HTML, CSS, and APIs for both Web sites and progressive web apps."
             }
           />
-          <meta
-            property="og:image"
-            content={image || "/mdn-social-share.png"}
-          />
+          <meta property="og:image" content={image || ogImage} />
           <meta property="og:image:type" content="image/png" />
           <meta property="og:image:height" content="1080" />
           <meta property="og:image:width" content="1920" />

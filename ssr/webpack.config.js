@@ -2,6 +2,8 @@ import { fileURLToPath } from "node:url";
 import nodeExternals from "webpack-node-externals";
 import webpack from "webpack";
 import crypto from "node:crypto";
+import path from "node:path";
+import { BASE_URL, BUILD_OUT_ROOT } from "../libs/env/index.js";
 
 class GenerateCSPHash {
   /**
@@ -23,11 +25,13 @@ class GenerateCSPHash {
   }
 }
 
+const SSR_OUTPUT = fileURLToPath(new URL("dist", import.meta.url));
+
 const config = {
   context: fileURLToPath(new URL(".", import.meta.url)),
   entry: "./index.ts",
   output: {
-    path: fileURLToPath(new URL("dist", import.meta.url)),
+    path: SSR_OUTPUT,
     filename: "[name].js",
     sourceMapFilename: "[name].js.map",
     library: { type: "module" },
@@ -46,6 +50,16 @@ const config = {
     rules: [
       {
         oneOf: [
+          {
+            resourceQuery: /public/,
+            type: "asset/resource",
+            generator: {
+              emit: true,
+              publicPath: BASE_URL.replace(/\/?$/, "/") || "/",
+              filename: "[name].[hash:8][ext]",
+              outputPath: path.relative(SSR_OUTPUT, BUILD_OUT_ROOT), // relative to output.path set above
+            },
+          },
           {
             resourceQuery: /inline/,
             type: "asset/source",
