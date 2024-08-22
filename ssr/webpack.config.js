@@ -56,7 +56,7 @@ const config = {
             generator: {
               emit: true,
               publicPath: BASE_URL.replace(/\/?$/, "/") || "/",
-              filename: "[name].[hash:8][ext]",
+              filename: "[name].[hash][ext]",
               outputPath: path.relative(SSR_OUTPUT, BUILD_OUT_ROOT), // relative to output.path set above
             },
           },
@@ -67,6 +67,20 @@ const config = {
               {
                 test: /\.js$/,
                 use: ["terser-loader"],
+              },
+              {
+                test: /\.css$/,
+                use: [
+                  {
+                    loader: "postcss-loader",
+                    options: {
+                      postcssOptions: {
+                        config: false,
+                        plugins: ["cssnano"],
+                      },
+                    },
+                  },
+                ],
               },
             ],
           },
