@@ -5,17 +5,22 @@ import "./play/controller.js";
 import "./play/console.js";
 import "./play/runner.js";
 import { GleanMixin } from "./glean-mixin.js";
+import "./tabs.js";
 
 import styles from "./interactive-example.scss?css" with { type: "css" };
+
+import exampleStyle from "./interactive-example/example.css?raw";
 
 /**
  * @import { Ref } from 'lit/directives/ref.js';
  * @import { PlayController } from "./play/controller.js";
+ * @import { PlayRunner } from "./play/runner.js";
  */
 
 export class InteractiveExample extends GleanMixin(LitElement) {
   static properties = {
     name: { type: String },
+    _languages: { state: true },
   };
 
   static styles = styles;
@@ -23,10 +28,16 @@ export class InteractiveExample extends GleanMixin(LitElement) {
   constructor() {
     super();
     this.name = "";
+    /** @type {string[]} */
+    this._languages = [];
+    /** @type {Object<string, string>} */
+    this._code = {};
   }
 
   /** @type {Ref<PlayController>} */
   _controller = createRef();
+  /** @type {Ref<PlayRunner>} */
+  _runner = createRef();
 
   _run() {
     this._controller.value?.run();
@@ -37,10 +48,10 @@ export class InteractiveExample extends GleanMixin(LitElement) {
   }
 
   _initialCode() {
-    const examples = this.closest("section")?.querySelectorAll(
+    const exampleNodes = this.closest("section")?.querySelectorAll(
       ".code-example pre[class*=interactive-example]"
     );
-    return Array.from(examples || []).reduce((acc, pre) => {
+    const code = Array.from(exampleNodes || []).reduce((acc, pre) => {
       const language = pre.classList[1];
       return language && pre.textContent
         ? {
@@ -51,6 +62,25 @@ export class InteractiveExample extends GleanMixin(LitElement) {
           }
         : acc;
     }, /** @type {Object<string, string>} */ ({}));
+    this._languages = Object.keys(code);
+    code["css-hidden"] = exampleStyle;
+    return code;
+  }
+
+  /**
+   * @param {string} lang
+   */
+  _langName(lang) {
+    switch (lang) {
+      case "html":
+        return "HTML";
+      case "css":
+        return "CSS";
+      case "js":
+        return "JavaScript";
+      default:
+        return lang;
+    }
   }
 
   /** @param {Event} ev  */
@@ -74,29 +104,56 @@ export class InteractiveExample extends GleanMixin(LitElement) {
     this.renderRoot.addEventListener("cut", this._telemetryHandler);
     this.renderRoot.addEventListener("paste", this._telemetryHandler);
     this.renderRoot.addEventListener("click", this._telemetryHandler);
+    this._code = this._initialCode();
   }
 
   render() {
-    return html`
-      <play-controller ${ref(this._controller)}>
-        <div class="template-javascript">
-          <h4>${this.name}</h4>
-          <play-editor id="editor" language="javascript"></play-editor>
-          <div class="buttons">
-            <button id="execute" @click=${this._run}>Run</button>
-            <button id="reset" @click=${this._reset}>Reset</button>
-          </div>
-          <play-console id="console"></play-console>
-          <play-runner></play-runner>
-        </div>
-      </play-controller>
-    `;
+    return this._languages.length === 1 && this._languages[0] === "js"
+      ? html`
+          <play-controller ${ref(this._controller)}>
+            <div class="template-javascript">
+              <header>
+                <h4>${this.name}</h4>
+              </header>
+              <play-editor id="editor" language="js"></play-editor>
+              <div class="buttons">
+                <button id="execute" @click=${this._run}>Run</button>
+                <button id="reset" @click=${this._reset}>Reset</button>
+              </div>
+              <play-console id="console"></play-console>
+              <play-runner></play-runner>
+            </div>
+          </play-controller>
+        `
+      : html`
+          <play-controller ${ref(this._controller)} run-on-start run-on-change>
+            <div class="template-tabbed">
+              <header>
+                <h4>${this.name}</h4>
+                <button id="reset" @click=${this._reset}>Reset</button>
+              </header>
+              <tab-wrapper>
+                ${this._languages.map(
+                  (lang) => html`
+                    <tab-tab>${this._langName(lang)}</tab-tab>
+                    <tab-panel>
+                      <play-editor language=${lang}></play-editor>
+                    </tab-panel>
+                  `
+                )}
+              </tab-wrapper>
+              <div class="output-wrapper">
+                <h4>Output</h4>
+                <play-runner ${ref(this._runner)}></play-runner>
+              </div>
+            </div>
+          </play-controller>
+        `;
   }
 
   firstUpdated() {
-    const code = this._initialCode();
     if (this._controller.value) {
-      this._controller.value.code = code;
+      this._controller.value.code = this._code;
     }
   }
 
