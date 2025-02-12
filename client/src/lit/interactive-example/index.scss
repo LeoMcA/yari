@@ -1,5 +1,5 @@
-@use "../ui/vars" as *;
-@use "../ui/atoms/button/mixins" as button;
+@use "../../ui/vars" as *;
+@use "../../ui/atoms/button/mixins" as button;
 
 header {
   align-items: center;
@@ -90,7 +90,6 @@ tab-wrapper {
 
 .template-tabbed {
   --type-label-s: 600 0.625rem/1.2 var(--font-heading); /* 10px/12px */
-  --button-height: 2rem;
   display: grid;
   grid-template-areas:
     "header header"
@@ -106,7 +105,7 @@ tab-wrapper {
     color: var(--text-primary);
     cursor: pointer;
     font: var(--type-label-s);
-    height: var(--button-height);
+    height: 2rem;
     letter-spacing: 1.5px;
     margin: 0;
     max-width: 100px;
@@ -135,7 +134,6 @@ tab-wrapper {
       border-radius: 0 0 0 var(--elem-radius);
       color: var(--text-secondary);
       font: var(--type-label-s);
-      font-size: 0.9rem;
       margin: 0;
       padding: 0.5rem 1.6rem;
       position: absolute;

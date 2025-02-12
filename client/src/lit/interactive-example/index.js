@@ -1,20 +1,21 @@
 import { html, LitElement } from "lit";
 import { ref, createRef } from "lit/directives/ref.js";
-import "./play/editor.js";
-import "./play/controller.js";
-import "./play/console.js";
-import "./play/runner.js";
-import { GleanMixin } from "./glean-mixin.js";
+import "../play/editor.js";
+import "../play/controller.js";
+import "../play/console.js";
+import "../play/runner.js";
+import { GleanMixin } from "../glean-mixin.js";
 import "./tabs.js";
+import { decode } from "he";
 
-import styles from "./interactive-example.scss?css" with { type: "css" };
+import styles from "./index.scss?css" with { type: "css" };
 
-import exampleStyle from "./interactive-example/example.css?raw";
+import exampleStyle from "./example.css?raw";
 
 /**
  * @import { Ref } from 'lit/directives/ref.js';
- * @import { PlayController } from "./play/controller.js";
- * @import { PlayRunner } from "./play/runner.js";
+ * @import { PlayController } from "../play/controller.js";
+ * @import { PlayRunner } from "../play/runner.js";
  */
 
 export class InteractiveExample extends GleanMixin(LitElement) {
@@ -113,7 +114,7 @@ export class InteractiveExample extends GleanMixin(LitElement) {
           <play-controller ${ref(this._controller)}>
             <div class="template-javascript">
               <header>
-                <h4>${this.name}</h4>
+                <h4>${decode(this.name)}</h4>
               </header>
               <play-editor id="editor" language="js"></play-editor>
               <div class="buttons">
@@ -129,7 +130,7 @@ export class InteractiveExample extends GleanMixin(LitElement) {
           <play-controller ${ref(this._controller)} run-on-start run-on-change>
             <div class="template-tabbed">
               <header>
-                <h4>${this.name}</h4>
+                <h4>${decode(this.name)}</h4>
                 <button id="reset" @click=${this._reset}>Reset</button>
               </header>
               <tab-wrapper>

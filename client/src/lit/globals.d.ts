@@ -6,7 +6,7 @@ import { PlayConsole } from "./play/console";
 import { PlayController } from "./play/controller";
 import { PlayEditor } from "./play/editor";
 import { PlayRunner } from "./play/runner";
-import { TabPanel, TabTab, TabWrapper } from "./tabs";
+import { TabPanel, TabTab, TabWrapper } from "./interactive-example/tabs";
 
 declare global {
   interface HTMLElementTagNameMap {
