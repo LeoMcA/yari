@@ -1,10 +1,9 @@
 @font-face {
   font-family: "Inter";
   src:
-    url("https://interactive-examples.mdn.mozilla.net/media/fonts/Inter.var.woff2")
+    url("/shared-assets/fonts/Inter.var.woff2")
       format("woff2 supports variations"),
-    url("https://interactive-examples.mdn.mozilla.net/media/fonts/Inter.var.woff2")
-      format("woff2-variations");
+    url("/shared-assets/fonts/Inter.var.woff2") format("woff2-variations");
   font-weight: 1 999;
   font-stretch: 75% 100%;
   font-style: oblique 0deg 20deg;
@@ -40,14 +39,12 @@
 
 @font-face {
   font-family: molot;
-  src: url("https://interactive-examples.mdn.mozilla.net/media/fonts/molot.woff2")
-    format("woff2");
+  src: url("/shared-assets/fonts/molot.woff2") format("woff2");
 }
 
 @font-face {
   font-family: rapscallion;
-  src: url("https://interactive-examples.mdn.mozilla.net/media/fonts/rapscall.woff2")
-    format("woff2");
+  src: url("/shared-assets/fonts/rapscall.woff2") format("woff2");
 }
 
 /* Those rules apply to content inside iframe, where example is shown */
