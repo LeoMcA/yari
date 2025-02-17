@@ -10,6 +10,7 @@ import { decode } from "he";
 
 import styles from "./index.scss?css" with { type: "css" };
 
+import exampleJs from "./example.js?raw";
 import exampleStyle from "./example.css?raw";
 
 /**
@@ -64,6 +65,8 @@ export class InteractiveExample extends GleanMixin(LitElement) {
         : acc;
     }, /** @type {Object<string, string>} */ ({}));
     this._languages = Object.keys(code);
+    // TODO: only if html example
+    code["js-hidden"] = exampleJs;
     code["css-hidden"] = exampleStyle;
     return code;
   }
