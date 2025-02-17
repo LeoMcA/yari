@@ -14,12 +14,12 @@
 
 :host(:hover),
 :host(:focus) {
-  background-color: var(--background-tertiary);
+  background-color: var(--background-quaternary);
   color: var(--text-primary);
 }
 
 :host(.active) {
-  background-color: var(--background-tertiary);
+  background-color: var(--background-quaternary);
   border-bottom-color: var(--accent-primary);
   color: var(--accent-primary);
 }
