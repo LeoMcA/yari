@@ -66,6 +66,7 @@ export class InteractiveExample extends GleanMixin(LitElement) {
     }, /** @type {Object<string, string>} */ ({}));
     this._languages = Object.keys(code);
     // TODO: only if html example
+    // TODO: breaks imports
     code["js-hidden"] = exampleJs;
     code["css-hidden"] = exampleStyle;
     return code;
@@ -148,7 +149,10 @@ export class InteractiveExample extends GleanMixin(LitElement) {
               </tab-wrapper>
               <div class="output-wrapper">
                 <h4>Output</h4>
-                <play-runner ${ref(this._runner)}></play-runner>
+                <play-runner
+                  ${ref(this._runner)}
+                  sandbox="allow-top-navigation-by-user-activation"
+                ></play-runner>
               </div>
             </div>
           </play-controller>
