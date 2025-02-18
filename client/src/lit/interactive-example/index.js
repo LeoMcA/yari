@@ -7,6 +7,7 @@ import "../play/runner.js";
 import { GleanMixin } from "../glean-mixin.js";
 import "./tabs.js";
 import { decode } from "he";
+import { watify } from "watify";
 
 import styles from "./index.scss?css" with { type: "css" };
 
@@ -18,6 +19,18 @@ import exampleStyle from "./example.css?raw";
  * @import { PlayController } from "../play/controller.js";
  * @import { PlayRunner } from "../play/runner.js";
  */
+
+/**
+ * compiles the wat code to wasm
+ * @param {string} wat
+ * @returns {Promise<Blob>} a blob with the newly created wasm module
+ */
+async function compileWat(wat) {
+  const binary = await watify(wat);
+
+  const blob = new Blob([binary], { type: "application/wasm" });
+  return blob;
+}
 
 export class InteractiveExample extends GleanMixin(LitElement) {
   static properties = {
@@ -69,6 +82,39 @@ export class InteractiveExample extends GleanMixin(LitElement) {
     // TODO: breaks imports
     code["js-hidden"] = exampleJs;
     code["css-hidden"] = exampleStyle;
+    if ("wat" in code) {
+      const js = code.js;
+      code.js = `window.parent.postMessage({ typ: "ready" }, "*");
+window.addEventListener("message", ({ data }) => {
+  console.log("message!", data);
+  if (data.typ === "watBlob") {
+    const watBlob = data.watBlob;
+    console.log(watBlob);
+    const watUrl = URL.createObjectURL(watBlob);
+    console.log(watUrl);
+    const js = data.js;
+    const newJs = js.replaceAll("{%wasm-url%}", watUrl);
+    const script = document.createElement("script")
+    script.setAttribute("type", "module")
+    script.innerHTML = newJs
+    document.body.appendChild(script)
+  }
+});
+console.log("hello!");
+`;
+      compileWat(code.wat).then((watBlob) => {
+        console.log("compiled", watBlob);
+        window.addEventListener("message", ({ data: { typ } }) => {
+          if (typ === "ready") {
+            console.log("ready!")
+            const iframe =
+              this._runner.value.shadowRoot.querySelector("iframe");
+            iframe.contentWindow.postMessage({ typ: "watBlob", watBlob, js }, "*");
+          }
+        });
+        // this._run()
+      });
+    }
     return code;
   }
 

@@ -162,6 +162,7 @@
     "unified": "^11.0.5",
     "unist-builder": "^4.0.0",
     "unist-util-visit": "^5.0.0",
+    "watify": "file:./watify/pkg",
     "web-features": "^2.23.0",
     "web-specs": "^3.39.0"
   },
